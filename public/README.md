@@ -1,7 +1,8 @@
 <!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
 # RandiRandi documentation
 
-[Member and administrator help](FAQ.md) links to booking guides and support.
+[Member and administrator help](https://help.randirandi.com/) has the questions,
+answers and illustrated guides.
 [The project README](../README.md) explains the product, licence and local setup.
 
 [Browser dependency notices](../randirandi/core/static/core/third-party-notices.txt)

@@ -17,5 +17,8 @@ if [ -z "$share" ]; then
     echo "Share $part of $count holds no tests." >&2
     exit 1
 fi
+# A share's tests read the generated MUI files (core/ui/main.css), which Git
+# ignores and bin/check builds only in part 0; build them here when missing.
+bin/styles --if-current
 logs="$(mktemp -d)"
 printf '%s\n' "$share" | bin/test-shares "$logs"

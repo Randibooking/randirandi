@@ -1,0 +1,10 @@
+#!/bin/sh
+# SPDX-License-Identifier: AGPL-3.0-only
+# Once after cloning: installs the dependencies and turns on the Git hook
+# that runs bin/check before each commit.
+set -eu
+cd "$(dirname "$0")/.."
+
+uv sync --locked
+git config core.hooksPath .githooks
+echo "Ready. bin/check runs before each commit."

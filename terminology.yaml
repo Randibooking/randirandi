@@ -1,0 +1,270 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Product vocabulary: model terms and their definitions.
+version: 1
+who:
+  operator:
+    definition: "The company that develops the product and runs it as a service for all organizations."
+    not: [vendor, provider, platform]
+  organization:
+    definition: "A customer of the service: a housing co-op, an association or any other body that has assets to rent out to its members. Its data is kept apart from every other organization's."
+    not: [tenant, client, customer]
+  administrator:
+    definition: "A person the organization appoints to manage bookings, payments and members."
+    not: [admin user, staff, manager]
+  member:
+    definition: "A person entitled to book the organization's assets."
+    not: [user, customer, resident, booker]
+  role:
+    definition: "What a member may book: the booking categories open to them. Every member has a role."
+    not: [group, permission, user type]
+  membership:
+    definition: "The entitlement that one or more members share, with the identifier the organization uses for it. A member can have several."
+    not: [household, account, unit, group]
+  address_unit:
+    definition: "Where in a membership's address the entitlement is: a flat, a suite, an H-number. Not part of the membership's identity."
+    not: [apartment number, unit]
+  postal_code:
+    definition: "The postal code of a membership's address. Not part of the membership's identity."
+    not: [zip code, zip]
+  section:
+    definition: "The part of the organization a membership belongs to: an entrance, a club's section, a floor. Not part of the membership's identity."
+    not: [entrance, group]
+  member_list_layout:
+    definition: "How a member list is laid out, kept in the member parser: the row that holds the column names, cell values that read as empty, a country code for phone numbers, people per row, a column split into two membership fields, and a column with the number of people per row."
+    not: [template, format]
+assets_and_time:
+  asset:
+    definition: "A bookable physical thing, including a room or equipment inside a room. Its availability is its time line. It has one or more floor plans, may carry a maximum occupancy, has a time zone and may belong to a space. When and how it can be booked is said by its containers."
+    not: [resource, room, venue, facility, item, pool, pool asset]
+  time_line:
+    definition: "An asset's one line of time. Its availability is drawn on it; outside the availability nothing is ever bookable."
+    not: [timeline per type]
+  maximum_occupancy:
+    definition: "How many people the law allows in an asset, such as a fire limit. Information only: it is never booked, and a floor plan may hold more spots; nothing checks one against the other."
+    not: [capacity, legal capacity, max capacity]
+  space:
+    definition: "A grouping of assets: where they are. It reserves nothing. Per space the administrator chooses whether its booking page shows the whole space, every asset's containers side by side, or one asset at a time."
+  covers_its_whole_space:
+    definition: "A mark on an asset in a space, such as 'Whole house' beside 'Hall' and 'Kitchen': the database keeps its bookings apart from those of every asset in the space, and the containers may stack (W29). An asset without a space cannot carry it."
+    not: [whole-space asset, represented space]
+  asset_inventory:
+    definition: "A storage word, not a model word: the table that stores a floor plan since M6 part 2.5f1 (core_assetinventory; its capacity is the floor plan's spot count, its unit the spot word)."
+    not: [pool, inventory (in the model's text)]
+  floor_plan:
+    definition: "An object of its own, belonging to one asset, that holds the spots a shared container books: seats, beds, workbenches. Every asset has at least one; an asset may have several (seated, standing). The simplest has spots with no names and no drawing, like a sauna's eight places."
+    not: [seat map, seating chart, layout]
+  spot:
+    definition: "One place a booking takes on a floor plan: a seat, a bed, a workbench. One column of a grid. It has a number from 1 that never changes and may have a name; a removed spot leaves a gap. One spot is sold once at a time."
+    not: [unit, individual unit, named unit, cell, slot, position]
+  group:
+    definition: "A set of spots on one floor plan, such as a table of eight seats or a section of a hall. Optional; named, with its own word ('table', 'section', 'row'); never booked or rented. A spot is in at most one group. A container's price book may give a group its own price, and a party is kept in one group when one has room."
+    not: [zone, block of seats, sub-plan]
+  capacity:
+    definition: "How many spots a floor plan has: what a shared container can sell at one moment."
+  capacity_unit:
+    definition: "The word a floor plan uses for its spots: seat, bed, machine."
+  spot_word:
+    definition: "The setup file's key for a floor plan's capacity unit, the word for its spots: seat, bed, machine. Format 3 (M6 part 2.5f3)."
+    not: [unit (as a setup key)]
+  location:
+    definition: "Where a spot is on its floor plan's drawing, such as row D, number 4."
+    not: [placement, position, coordinates, seat number]
+  pick:
+    definition: "The spots a member chooses for a booking in a shared container, or the group a member asks for. The quantity is how many are picked; the order takes exactly those spots or is refused as taken. Without a pick the system chooses: the party goes to the lowest-numbered group with room for all of it, then the lowest spot numbers free for the whole length; with no group, the lowest free spots."
+    not: [picked units, seat selection, chosen seats]
+  availability_calendar:
+    definition: "When an asset can be booked at all: for each day of a seven-day week, the available spans, applying from a start date. Outside it nothing is ever bookable. A change to it is never refused; it cancels and refunds the bookings in the time it removes. Approved 2026-10-24, not built (ADR-0028): a closure is refused where an event or a booking holds the time; a weekly change that reaches member bookings is dismissed or accepted, and accepted it closes everything it reaches except the time those bookings hold, which stand."
+    not: [opening hours, schedule]
+  available_span:
+    definition: "One span of a weekday in an availability calendar in which the asset is available. Spans that touch join, across midnight too."
+    not: [opening hours]
+  booking_type:
+    definition: "What members book assets for, named by the organization, for example an overnight stay or renting the room. The organization keeps one list; a booking type is not tied to one asset. It filters which containers a member is shown; it never changes a grid."
+    not: [category, service, offering, config type]
+  booking_category:
+    definition: "What a booking is for, named by the organization, for example work, private and internal use. A container names the booking categories it applies to, each with the container's hours or its own (category hours), a role names the ones its members can book, and a price book holds a price for each."
+    not: [price category, rate, tier, segment, customer type]
+  filter:
+    definition: "The member's choices that narrow the booking page, behind one button: booking category, booking type, which asset of a space, how many spots, one group of spots, how long. A part shows only when there is something to choose; the current choices show beside the button; something is always chosen. The calendar's prices are the chosen booking category's."
+    not: [facets, search options]
+  my_page:
+    definition: "The member's own page: who they are, what they book as, and their own bookings, coming ones first, then earlier ones; no change or cancel. One of the member pages' two places, with Book (the booking calendar, which ends in the cart)."
+    not: [my bookings, profile, account page]
+  category_hours:
+    definition: "Weekday spans inside a container's hours when the container offers one booking category; a booking of it lies wholly inside them. Without spans, the container's hours."
+    not: [availability, opening hours]
+  booking_configuration:
+    definition: "The stored container: one asset, one booking type, its booking categories, fixed or flexible, exclusive or shared with one of the asset's floor plans, interval and lengths, the seven-day week, the calendar weeks, payment yes or no with its price book, and its status. It has a number and no name. Short: configuration."
+    not: [schedule, slot type, rule, offer]
+  container:
+    definition: "The master object of the model: a booking configuration on its asset's time line. It holds everything a grid is built from. Containers may stack on one asset and across a space; only two shared containers on different floor plans of one asset may not cover the same time. A booking and a block belong to one container."
+    not: [offer, booking slot container, sub-grid]
+  stack:
+    definition: "Two or more containers covering the same time on one asset, or across a space under the whole-space mark. The first booking takes the time; every container shows it taken."
+    not: [double container]
+  validator:
+    definition: "The check that refuses to save a container, naming the reason, when the asset's weekly availability does not cover its date periods without a gap, or when it is shared and covers the same time as a shared container on another floor plan of the asset. Another container is one that is enabled or still has a booking to come. Only the time from the save on is checked."
+    not: [overlap warning, save check]
+  consumption_mode:
+    definition: "Whether a container sells spots of its floor plan or the whole asset. Recorded on the taken time too. Independent of the period type."
+    values:
+      shared: "The container has one floor plan; a booking takes a quantity of its spots, one column each."
+      exclusive: "The container has no floor plan; a booking takes the whole asset: the grid has one column."
+    not: [booking mode, seat offer, whole offer]
+  period_type:
+    definition: "The form a booking takes inside a period."
+    values:
+      fixed: "The whole period is booked as one: the grid has one row."
+      flexible: "The member picks a start and a length inside the period, both in whole intervals, the length between the minimum and the maximum, at most 24 hours: the grid has one row per interval."
+      open: "Not in use. The member picks any start and end, including across days. Left out of the container's fields for now."
+    not: [booking type]
+  period:
+    definition: "A container's span on the seven-day week: the period start and the period end, the end possibly on a later day, repeated on its period start weekdays."
+    not: [booking period, grid]
+  calendar_weeks:
+    definition: "The weeks a container applies in: from a calendar week to a calendar week, or open-ended, every N weeks, counted straight across New Year. A period belongs to the week it starts in."
+    not: [start date, stop date, season]
+  multi_day_period:
+    definition: "A period that ends on a later date than it starts (end day 1 or more): one night, a weekend, up to a week for a fixed period. It belongs to the date it starts."
+    not: [overnight period, night]
+  date_period:
+    definition: "One occurrence of a container's period: the period on the date it starts. One date period is one grid."
+    not: [dated period, slot]
+  grid:
+    definition: "A date period drawn from its container alone: spots across, one column each (one column when the container is exclusive), intervals down, one row each (one row when the period is fixed)."
+  row:
+    definition: "One interval of a date period, across every column of its grid."
+  column:
+    definition: "One spot of a date period, down every row of its grid; the one column of an exclusive container."
+  cell:
+    definition: "One spot at one interval of a date period: where a row and a column of a grid meet. A booking or a block takes cells; the cells nobody holds are free."
+    not: [position, pos, slot]
+  span:
+    definition: "A piece of time from a start to an end; the start is included, the end is not, so spans that touch do not overlap. In a grid, a run of consecutive cells in one column: one spot over consecutive intervals."
+    not: [interval, stretch, window]
+  free_span:
+    definition: "A span of free cells in one column."
+    not: [gap, opening]
+  interval:
+    definition: "For a flexible period: the minutes between starts and between allowed lengths, and the height of one row. Never a span of time."
+    not: [step]
+  start:
+    definition: "A moment a booking may begin: the period start plus whole intervals."
+  length:
+    definition: "How long a booking is. A flexible container allows lengths from its minimum length to its maximum length, in whole intervals; the minimum may be left out and is then one interval."
+    not: [duration]
+  quantity:
+    definition: "How many spots a booking takes: one column each in a shared container; an exclusive booking takes its one column as quantity one."
+    not: [places, number of places, party size]
+  unbookable:
+    definition: "Said of a container, or one of its weekdays, with no bookable start."
+  unbookable_gap:
+    definition: "A free span shorter than the minimum length, so no booking can use it. Bookings, blocks and the edges of an available span can leave one; the minimum length leaves one of its own only when it is longer than the interval."
+    not: [leftover gap]
+  booking_calendar:
+    definition: "What a member sees for an asset or a space: for the query, the date periods of the containers the member's role can book, each with its taken cells and its bookable starts. Booking type and booking category filter which containers are shown."
+  query:
+    definition: "What a member asks the booking calendar: the query dates, the quantity and the length, and maybe a group."
+    not: [request, booking size]
+  query_dates:
+    definition: "The dates a query covers. They pick the date periods that have time in them; a date period comes whole and is never cut at their edges."
+  bookable_start:
+    definition: "For a query of quantity q and length n: a row of a date period from which q columns each have a free span of n cells. A fixed date period has one, its first row, when q columns are free for the whole period."
+    not: [fit, free time, valid interval]
+  free_capacity:
+    definition: "At a moment, how many spots nothing holds. A count: it cannot say which spots are free, so a booking is never fitted by it."
+    not: [skyline, free places]
+  price_book:
+    definition: "What an organization's containers cost, for each booking category, and for a group when it has its own price. A table of containers and booking categories, kept apart from the containers. An organization can have several; a container with payment links to one, a container without payment to none. It has a currency (ISO 4217)."
+    not: [rate table, tariff, price list]
+  price_tier:
+    definition: "One step of a price. A booking is cut at each tier's 'up to', which is a length counted from the start of the booking or a time of day. Each part costs the tier's amount for each started 'paid per' length, and the parts add up. A price book entry has one or more; a fixed period has one."
+    not: [rate, bracket, block price]
+  price:
+    definition: "The amount for one booking in a container with payment, in a booking category. It may be zero. It is found from the price tiers: the booking is cut at the tiers, by length or by time of day, and the parts add up. A price per spot is only for a shared container; an exclusive container is priced per booking."
+    not: [rate, fee]
+booking_and_money:
+  cart:
+    definition: "The bookings a member has chosen but not yet ordered."
+    not: [basket, picks, selection]
+  order:
+    definition: "One checkout: one or more bookings, paid with one payment when there is an amount to pay."
+  booking:
+    definition: "Cells of one date period of one container taken for a member: a quantity of spots (one column, the whole asset, when exclusive), each kept from the booking's start to its end, one span per spot. What is charged is on its booking lines; a booking in a container without payment has none."
+    states: [held, confirmed, cancelled, expired]
+  booking_line:
+    definition: "What is bought with a booking: the reference from the booking to the price book, through the booking configuration and the price book that applies to it, with the tier that is paid for, how many times its amount is paid, the amount, and the booking's quantity when the price is per spot (billing basis per_capacity_unit). A booking has one for each price tier that is paid for. A booking of 10:00 to 11:00 may have a booking line of up to 4 hours."
+    not: [order line, line item, invoice line]
+  capacity_allocation:
+    definition: "The spot a booking or block holds for its whole span, or the whole asset for an exclusive claim. The database refuses one spot sold twice at one moment, an exclusive claim beside any claim on its asset, and a claim of an asset that covers its whole space beside any claim in that space."
+    not: [slice]
+  hold:
+    definition: "A booking that waits for payment. It expires if the payment does not arrive in time. Such a booking is held; once paid, or when there is nothing to pay, it is confirmed."
+    not: [pending, reservation, unpaid]
+  payment:
+    definition: "The money movement for one order at a payment provider. An order with nothing to pay has no payment."
+    states: [created, authorized, captured, cancelled, expired, refunded]
+  payment_provider:
+    definition: "The service that moves the money for an organization. The first one is Vipps."
+  refund:
+    definition: "Money returned to the member for all or part of an order."
+  cancellation:
+    definition: "An administrator ends a booking, with or without a refund."
+    not: [delete, removal]
+  change_request:
+    definition: "A member's request, made outside the product, to change a booking. It is handled by a cancellation and a new booking."
+  block:
+    definition: "Cells an administrator takes inside one container, like a booking without a member and without a payment, for a while: for example a spot out for repair. On an exclusive container it takes the one column or nothing. A block over several containers is one block per container. Not availability: the asset's time line stays."
+  occupied:
+    definition: "Time on an asset that an Event or a Member booking holds. With closed and free, one of the three states of time on an asset."
+    not: [booked, taken]
+  event:
+    definition: "Something the organization holds that its members can know about: a social event, volunteer work, the organization's own (a board meeting) or an open house (the weekend's drop-in time). An object of its own, made in admin by an administrator only, with a title, a description, a start and an end, a contact person and possibly a weekly repeat. On an asset it books it, off any grid and refused where the asset is closed or booked; without one it takes no time and is on no booking calendar. Members find every event in a list called Events."
+    not: [booking, block, closure, audit event]
+    categories: [social, volunteer_work, organization, open_house]
+  taken_time:
+    definition: "The record that holds the cells of a booking or block: selected asset, full start and end, state, consumption mode and quantity. Its allocations hold the spots."
+    states: [held, confirmed, cancelled, expired, blocked]
+    not: [occupancy, reservation, slot]
+  confirmation:
+    definition: "The page and the message a member gets when an order is complete."
+  cancellation_confirmation:
+    definition: "The message a member gets when an administrator cancels a booking. It names the booking and says how much money is returned, or that none is."
+access:
+  access:
+    definition: "Whether a member may log in and book."
+    states: [granted, revoked]
+  access_event:
+    definition: "One change of a member's access, with its time and cause."
+  member_parser:
+    definition: "Code that reads one organization's member list in its own layout. The product holds parsers, never one list's columns; an administrator picks the parser, gives it a file and starts the import."
+    not: [member source, adapter, connector]
+  member_import:
+    definition: "One run that reads a complete organization member list. It creates members and grants or revokes access; it never deletes members or their history."
+    not: [sync, mirror]
+  login_code:
+    definition: "A one-time code sent to a member or administrator to log in."
+  audit_event:
+    definition: "The record of one administrator action."
+operations:
+  service:
+    definition: "The product as the operator runs it: one installation that serves every organization."
+    not: [deployment, instance, platform]
+  configuration:
+    definition: "Everything that differs between organizations: spaces, assets, floor plans with their spots and groups, availability calendars, booking types, booking categories, roles, containers, price books, labels, texts, payment provider."
+    rule: "If it is specific to one organization, it is that organization's configuration or data. It is never code."
+  setup:
+    definition: "The part of an organization's configuration that says what can be booked, by whom and at what price: the organization, its spaces, assets, floor plans, availability calendars, booking types, booking categories, roles, containers and price books."
+  setup_file:
+    definition: "An organization's setup written out as one file, in one format that every organization uses. It holds no members, no secrets and no personal data. The operator loads it by command."
+    not: [fixture, seed, template, config file]
+  label_set:
+    definition: "The words an organization shows to people in place of the product terms, in its language."
+  message_key:
+    definition: "The short name the server sends for a refusal or a state, such as taken, does-not-fit-beside-cart, other-currency or already-started, with its default English text. The label set holds an organization's own words for it."
+    not: [error code, status text]
+  settling:
+    definition: "The state of a held order whose payment is being read at the provider, or is authorized or captured and not yet confirmed. The member is told the payment is being checked."
+    not: [processing]
+  subscription:
+    definition: "What an organization pays the operator for the service."

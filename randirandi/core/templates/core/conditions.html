@@ -1,0 +1,14 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/base.html" %}
+{% block title %}{{ text.title }} · RandiRandi{% endblock %}
+{% block about %}{% endblock %}
+{% block content %}
+  {% include "core/_public_places.html" %}
+  <p>{{ ui.organization }}</p>
+  <h1>{{ text.title }}</h1>
+  <p>{{ text.intro }}</p>
+  {% for section in text.sections %}
+    <h2>{{ section.heading }}</h2>
+    <p>{{ section.text }}</p>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% autoescape off %}RandiRandi
+
+{{ words.code }}
+
+{{ words.lead }}
+
+{{ words.ignore }}
+
+{{ sign_off }}
+{% endautoescape %}

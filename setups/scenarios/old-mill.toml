@@ -1,0 +1,156 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# General model acceptance fixture: fictional test values, not a customer delivery.
+# The Old Mill, a made-up house for hire: one space with three assets, the
+# Hall, the Kitchen and the Whole house, which carries the whole-space mark.
+# Rooms are hired every day 10:00-22:00, the whole house on Saturday and
+# Sunday 10:00-22:00. The containers stack (2026-10-19, ): a booking of
+# the Whole house takes the Hall and the Kitchen, and a booking of a room
+# takes the Whole house. Prices are made up.
+# The setup of Old Mill.
+# The format is described in docs/setup-file.md.
+
+format = 3
+
+[organization]
+name = "Old Mill"
+subdomain = "old-mill"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "bookings@old-mill.example"
+standard_role = "Member"
+member_retention_months = 12
+booking_retention_months = 36
+
+[[spaces]]
+number = 1
+name = "Old Mill"
+
+[[assets]]
+number = 1
+name = "Hall"
+space = "Old Mill"
+
+[[assets]]
+number = 2
+name = "Kitchen"
+space = "Old Mill"
+
+[[assets]]
+number = 3
+name = "Whole house"
+space = "Old Mill"
+whole_space = true
+
+[[availability_calendars]]
+asset = "Hall"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "10:00", end = "22:00" },
+]
+
+[[availability_calendars]]
+asset = "Kitchen"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "10:00", end = "22:00" },
+]
+
+[[availability_calendars]]
+asset = "Whole house"
+spans = [
+  { weekdays = ["sat", "sun"], start = "10:00", end = "22:00" },
+]
+
+[[booking_types]]
+name = "Hall hire"
+
+[[booking_types]]
+name = "Kitchen hire"
+
+[[booking_types]]
+name = "House hire"
+
+[[booking_categories]]
+name = "private"
+
+[[roles]]
+name = "Member"
+booking_categories = ["private"]
+admin_access = false
+
+[[booking_configurations]]
+number = 1
+asset = "Hall"
+booking_type = "Hall hire"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "12 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 2
+asset = "Kitchen"
+booking_type = "Kitchen hire"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "12 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 3
+asset = "Whole house"
+booking_type = "House hire"
+period_type = "fixed"
+period_start = "10:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["sat", "sun"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[price_books]]
+number = 1
+name = "Prices"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "12 h", paid_per = "1 h", amount = 200 },
+]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "12 h", paid_per = "1 h", amount = 100 },
+]
+
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "12 h", paid_per = "12 h", amount = 2500 },
+]

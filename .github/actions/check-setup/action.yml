@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: Set up the checks
+description: Install the Python environment and style compiler runtime.
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      with:
+        node-version: '22.23.3'
+    - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+      with:
+        version: '0.13.3'
+        enable-cache: false
+    - shell: bash
+      run: uv sync --locked

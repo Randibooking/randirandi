@@ -1,0 +1,2 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+<footer class="fallback-bar"><p>{{ ui.company }}</p><p class="fallback-links">{% if ui.footer_links %}<a href="{% url 'public-prices' %}">{{ ui.footer_prices }}</a><a href="{% url 'conditions' %}">{{ ui.footer_conditions }}</a>{% endif %}{% if ui.source %}<a href="{{ ui.source }}" target="_blank" rel="noopener noreferrer">{{ ui.footer_source }} {{ ui.version }}</a>{% endif %}<a href="{{ ui.documentation }}" target="_blank" rel="noopener noreferrer">{{ ui.footer_documentation }}</a></p></footer>

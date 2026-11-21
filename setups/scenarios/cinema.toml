@@ -1,0 +1,135 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# General model acceptance fixture: fictional test values, not a customer delivery.
+# A cinema: one asset with a floor plan "Seats" of 200 spots. One shared
+# container per screening, a booking taking one seat per person; hire of
+# the whole cinema on the other evenings, exclusive. The containers sit
+# back to back (the booking container, 2026-10-17), though they could
+# also cover the same evening (2026-10-19, ). The seats have no
+# names yet; picking them on a drawn floor plan comes later.
+# The setup of Cinema example.
+# The format is described in docs/setup-file.md.
+
+format = 3
+
+[organization]
+name = "Cinema example"
+subdomain = "cinema"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "board@cinema.example"
+standard_role = "Member"
+member_retention_months = 12
+booking_retention_months = 36
+
+[[spaces]]
+number = 1
+name = "Cinema"
+
+[[assets]]
+number = 1
+name = "Cinema"
+space = "Cinema"
+
+[[assets.floor_plans]]
+name = "Seats"
+spot_word = "seat"
+spots = 200
+
+[[availability_calendars]]
+asset = "Cinema"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "12:00", end = "24:00" },
+]
+
+[[booking_types]]
+name = "Film night"
+
+[[booking_types]]
+name = "Cinema hire"
+
+[[booking_categories]]
+name = "private"
+
+[[roles]]
+name = "Member"
+booking_categories = ["private"]
+admin_access = false
+
+[[booking_configurations]]
+number = 1
+asset = "Cinema"
+booking_type = "Film night"
+period_type = "fixed"
+period_start = "19:00"
+period_end = "21:00"
+end_day = 0
+period_start_weekdays = ["fri"]
+start_week = "2027-W09"
+stop_week = "2027-W09"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+floor_plan = "Seats"
+
+[[booking_configurations]]
+number = 2
+asset = "Cinema"
+booking_type = "Film night"
+period_type = "fixed"
+period_start = "19:00"
+period_end = "21:00"
+end_day = 0
+period_start_weekdays = ["sat"]
+start_week = "2027-W09"
+stop_week = "2027-W09"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+floor_plan = "Seats"
+
+[[booking_configurations]]
+number = 3
+asset = "Cinema"
+booking_type = "Cinema hire"
+period_type = "fixed"
+period_start = "18:00"
+period_end = "23:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "sun"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[price_books]]
+number = 1
+name = "Prices"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "2 h", paid_per = "2 h", amount = 120 },
+]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "2 h", paid_per = "2 h", amount = 120 },
+]
+
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "5 h", paid_per = "5 h", amount = 3000 },
+]

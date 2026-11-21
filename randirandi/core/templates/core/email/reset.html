@@ -1,0 +1,10 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/email/base.html" %}
+{% block title %}{{ words.title }}{% endblock %}
+{% block content %}
+<h1 style="margin:0 0 16px;font-size:26px;line-height:1.3">{{ words.heading }}</h1>
+<p style="font-size:16px;line-height:1.6">{{ words.body }}</p>
+<p style="font-size:16px;line-height:1.6">{{ words.reference }}</p>
+<p style="margin-bottom:0;color:{{ colour.text_quiet }};font-size:14px;line-height:1.6">{{ words.not_expected }}</p>
+<p style="margin:24px 0 0;color:{{ colour.text_quiet }};font-size:14px;line-height:1.6">{{ sign_off }}</p>
+{% endblock %}

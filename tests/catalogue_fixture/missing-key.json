@@ -1,0 +1,5 @@
+{
+  "greeting": "Hei",
+  "box.one": "{count} eske",
+  "box.other": "{count} esker"
+}

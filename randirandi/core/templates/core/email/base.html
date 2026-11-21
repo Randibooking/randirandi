@@ -1,0 +1,24 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body bgcolor="{{ colour.page }}" style="margin:0;background-color:{{ colour.page }};color:{{ colour.text }};font-family:Arial,Helvetica,sans-serif">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="{{ colour.page }}" style="background-color:{{ colour.page }}">
+    <tr><td align="center" style="padding:32px 16px">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="{{ colour.card }}" style="max-width:450px;background-color:{{ colour.card }};border:1px solid {{ colour.card_edge }};border-radius:12px">
+        <tr><td style="padding:24px;color:{{ colour.text }}">
+          <p style="margin:0 0 24px;font-size:16px;font-weight:bold;line-height:24px"><img src="cid:{{ logo_cid }}" width="64" height="64" alt="" style="vertical-align:middle;margin-right:12px;border:0">RandiRandi</p>
+          {% block content %}{% endblock %}
+          <p style="margin:16px 0 0;color:{{ colour.text_quiet }};font-size:14px;line-height:1.6">{{ footer }}</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

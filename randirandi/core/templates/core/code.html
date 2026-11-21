@@ -1,0 +1,16 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/base.html" %}
+{% block title %}{{ words.page_title }}{% endblock %}
+{% block content %}
+  <p>{{ ui.organization }}</p>
+  <h1>{{ words.title }}</h1>
+  <p id="code-help">{{ words.help }}</p>
+  <form method="post" action="{{ ui.action }}">
+    {% csrf_token %}
+    <label for="id_code">{{ form.code.label }}</label>
+    {{ form.code }}
+    {% if ui.error %}<p id="code-error" class="fallback-error" role="alert">{{ ui.error }}</p>{% endif %}
+    <button type="submit">{{ words.submit }}</button>
+  </form>
+  <a href="{% url 'login' %}">{{ words.new }}</a>
+{% endblock %}

@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: Checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        # Side by side: 0 is every check but the tests; 1-4 a share of them.
+        part: [0, 1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/check-setup
+      - run: bin/ci-part ${{ matrix.part }} 4

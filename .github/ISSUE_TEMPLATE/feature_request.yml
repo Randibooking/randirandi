@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: Feature suggestion
+description: Explain a booking or administration need and the outcome you want.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggestions are welcome. Outside code and documentation contributions
+        are currently closed; see CONTRIBUTING.md. Describe the need here
+        using fictional examples. A suggestion does not create a delivery date.
+        Report security concerns privately as described in SECURITY.md.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: Who needs to do what, and what makes it difficult today? Do not name private organizations or members.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe what a successful result would let the person do. Include a fictional example where useful.
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Current workaround or alternatives
+      description: Explain how you handle this now and what falls short.
+  - type: textarea
+    id: model
+    attributes:
+      label: Related booking rules (optional)
+      description: Mention any relevant shared inventory, timing, access, pricing or cancellation behavior.

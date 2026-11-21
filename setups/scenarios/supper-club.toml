@@ -1,0 +1,143 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# General model acceptance fixture: fictional test values, not a customer delivery.
+# Lantern Supper Club, a made-up restaurant for the groups of spots (M6 part
+# 2.5g, the drawing of 2026-10-17, section 2): one dining room with a floor
+# plan of 20 seats at three tables, the Window table (seats 1-8), the Long
+# table (9-16) and the Bar (17-20). A party sits together when one table has
+# room. Dinner on Fridays 18:00-21:00 is priced per seat, with a price of its
+# own for the Window table and the Long table; the Bar takes the normal seat
+# price. Sunday lunch 12:00-15:00 books the same seats from a price book with
+# no price per table, so every seat costs the same. Prices are made up.
+# The setup of Lantern Supper Club.
+# The format is described in docs/setup-file.md.
+
+format = 3
+
+[organization]
+name = "Lantern Supper Club"
+subdomain = "lantern-supper-club"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "tables@lantern-supper-club.example"
+standard_role = "Guest"
+member_retention_months = 12
+booking_retention_months = 36
+
+[[assets]]
+number = 1
+name = "Dining room"
+maximum_occupancy = 40
+
+[[assets.floor_plans]]
+spot_word = "seat"
+spots = 20
+
+[[assets.floor_plans.groups]]
+name = "Window"
+word = "table"
+spots = [1, 2, 3, 4, 5, 6, 7, 8]
+
+[[assets.floor_plans.groups]]
+name = "Long"
+word = "table"
+spots = [9, 10, 11, 12, 13, 14, 15, 16]
+
+[[assets.floor_plans.groups]]
+name = "Bar"
+word = "table"
+spots = [17, 18, 19, 20]
+
+[[availability_calendars]]
+asset = "Dining room"
+spans = [
+  { weekdays = ["fri"], start = "17:00", end = "23:00" },
+  { weekdays = ["sun"], start = "11:00", end = "16:00" },
+]
+
+[[booking_types]]
+name = "Dinner"
+
+[[booking_types]]
+name = "Lunch"
+
+[[booking_categories]]
+name = "guest"
+
+[[roles]]
+name = "Guest"
+booking_categories = ["guest"]
+admin_access = false
+
+[[booking_configurations]]
+number = 1
+asset = "Dining room"
+booking_type = "Dinner"
+period_type = "fixed"
+period_start = "18:00"
+period_end = "21:00"
+end_day = 0
+period_start_weekdays = ["fri"]
+status = "enabled"
+price_book = "Dinner prices"
+booking_categories = ["guest"]
+consumption_mode = "shared"
+
+[[booking_configurations]]
+number = 2
+asset = "Dining room"
+booking_type = "Lunch"
+period_type = "fixed"
+period_start = "12:00"
+period_end = "15:00"
+end_day = 0
+period_start_weekdays = ["sun"]
+status = "enabled"
+price_book = "Lunch prices"
+booking_categories = ["guest"]
+consumption_mode = "shared"
+
+[[price_books]]
+number = 1
+name = "Dinner prices"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "guest"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "3 h", paid_per = "3 h", amount = 350 },
+]
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "guest"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+group = "Window"
+tiers = [
+  { up_to = "3 h", paid_per = "3 h", amount = 500 },
+]
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "guest"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+group = "Long"
+tiers = [
+  { up_to = "3 h", paid_per = "3 h", amount = 400 },
+]
+
+[[price_books]]
+number = 2
+name = "Lunch prices"
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "guest"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "3 h", paid_per = "3 h", amount = 200 },
+]

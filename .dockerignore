@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Only what the image needs goes into the build.
+*
+!pyproject.toml
+!uv.lock
+!manage.py
+!gunicorn.conf.py
+!randirandi/
+!setups/example.toml
+!dummy-members.csv
+!Dockerfile
+!images.env
+**/__pycache__/
+!LICENSE
+!LICENSE-docs
+!TRADEMARKS.md
+!licenses/

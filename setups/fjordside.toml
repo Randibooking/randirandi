@@ -1,0 +1,220 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Fjordside, a made-up housing co-op with one hall: fictional test values, not
+# a customer. Format 1, kept so that the floor plans migration (0016) is still
+# proved on a file of its day. The shape the tests lean on: a night container
+# Sunday to Thursday, weekday hire with Work's own hours (to 22:00 Monday to
+# Thursday, to 17:00 on Friday), weekend hire, and Friday and Saturday nights
+# at their own price; nine price entries, twelve tiers. The format is described
+# in docs/setup-file.md.
+
+format = 1
+
+[organization]
+name = "Fjordside Housing Co-op"
+subdomain = "fjordside"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "board@fjordside.example"
+standard_role = "Standard"
+member_retention_months = 12
+booking_retention_months = 36
+max_bookings_a_day = 5
+book_ahead_months = 6
+
+# --- Asset --------------------------------------------------------------------
+
+[[assets]]
+number = 1
+name = "Hall"
+
+# --- Availability calendar ----------------------------------------------------
+# Around the clock every day; closures by date are what close it.
+
+[[availability_calendars]]
+asset = "Hall"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+# --- Booking types ------------------------------------------------------------
+
+[[booking_types]]
+name = "Hall hire"
+
+[[booking_types]]
+name = "Overnight stay"
+
+# --- Booking categories -------------------------------------------------------
+
+[[booking_categories]]
+name = "Private"
+icon = "person"
+
+[[booking_categories]]
+name = "Work"
+icon = "work"
+
+[[booking_categories]]
+name = "Internal"
+icon = "building"
+
+# --- Roles --------------------------------------------------------------------
+
+[[roles]]
+name = "Standard"
+booking_categories = ["Work", "Private"]
+admin_access = false
+
+[[roles]]
+name = "Board"
+booking_categories = ["Work", "Private", "Internal"]
+admin_access = false
+
+[[roles]]
+name = "Admin"
+booking_categories = ["Work", "Private", "Internal"]
+admin_access = true
+
+# --- Booking configurations ---------------------------------------------------
+
+# Overnight stay, the nights before a weekday.
+[[booking_configurations]]
+number = 1
+asset = "Hall"
+booking_type = "Overnight stay"
+period_type = "fixed"
+period_start = "22:00"
+period_end = "10:00"
+end_day = 1
+period_start_weekdays = ["sun", "mon", "tue", "wed", "thu"]
+status = "enabled"
+price_book = "Standard"
+booking_categories = ["Private", "Internal"]
+
+# Hall hire, Monday to Friday. The only container that can be booked as Work,
+# which has hours of its own: to 22:00 Monday to Thursday, to 17:00 on Friday.
+# Friday evening is for Private and Internal hire.
+[[booking_configurations]]
+number = 2
+asset = "Hall"
+booking_type = "Hall hire"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "12 h"
+status = "enabled"
+price_book = "Standard"
+booking_categories = ["Work", "Private", "Internal"]
+category_hours = [
+  { booking_category = "Work", weekdays = ["mon", "tue", "wed", "thu"], start = "10:00", end = "22:00" },
+  { booking_category = "Work", weekdays = ["fri"], start = "10:00", end = "17:00" },
+]
+
+# Hall hire at the weekend, from 10:00 like the weekdays.
+[[booking_configurations]]
+number = 3
+asset = "Hall"
+booking_type = "Hall hire"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["sat", "sun"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "12 h"
+status = "enabled"
+price_book = "Standard"
+booking_categories = ["Private", "Internal"]
+
+# Overnight stay, Friday and Saturday nights, at their own price.
+[[booking_configurations]]
+number = 4
+asset = "Hall"
+booking_type = "Overnight stay"
+period_type = "fixed"
+period_start = "22:00"
+period_end = "10:00"
+end_day = 1
+period_start_weekdays = ["fri", "sat"]
+status = "enabled"
+price_book = "Standard"
+booking_categories = ["Private", "Internal"]
+
+# --- Price book ---------------------------------------------------------------
+# Nine entries, twelve price tiers. Amounts are in kroner.
+
+[[price_books]]
+number = 1
+name = "Standard"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "Private"
+tiers_go_by = "length"
+tiers = [{ up_to = "12 h", paid_per = "12 h", amount = 300 }]
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "Internal"
+tiers_go_by = "length"
+tiers = [{ up_to = "12 h", paid_per = "12 h", amount = 0 }]
+
+# Until 17:00 each started 4 hours cost kr 600. From 17:00 the evening is
+# paid as one piece of 5 hours, kr 1200.
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "Work"
+tiers_go_by = "time of day"
+tiers = [
+  { up_to = "17:00", paid_per = "4 h", amount = 600 },
+  { up_to = "22:00", paid_per = "5 h", amount = 1200 },
+]
+
+# The first 4 hours cost kr 200. After that each started 4 hours cost kr 150.
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "Private"
+tiers_go_by = "length"
+tiers = [
+  { up_to = "4 h", paid_per = "4 h", amount = 200 },
+  { up_to = "12 h", paid_per = "4 h", amount = 150 },
+]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "Internal"
+tiers_go_by = "length"
+tiers = [{ up_to = "12 h", paid_per = "12 h", amount = 0 }]
+
+# The first 3 hours cost kr 400. After that each started 2 hours cost kr 100.
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "Private"
+tiers_go_by = "length"
+tiers = [
+  { up_to = "3 h", paid_per = "3 h", amount = 400 },
+  { up_to = "12 h", paid_per = "2 h", amount = 100 },
+]
+
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "Internal"
+tiers_go_by = "length"
+tiers = [{ up_to = "12 h", paid_per = "12 h", amount = 0 }]
+
+[[price_books.entries]]
+booking_configuration = 4
+booking_category = "Private"
+tiers_go_by = "length"
+tiers = [{ up_to = "12 h", paid_per = "12 h", amount = 450 }]
+
+[[price_books.entries]]
+booking_configuration = 4
+booking_category = "Internal"
+tiers_go_by = "length"
+tiers = [{ up_to = "12 h", paid_per = "12 h", amount = 0 }]

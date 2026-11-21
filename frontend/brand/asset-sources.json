@@ -1,0 +1,112 @@
+{
+  "asset": "RandiRandi portrait logo",
+  "supplied_on": "2026-10-14",
+  "origin": "AI-assisted source portrait, separated into layers and traced as smooth editable vectors; canonical exports retained.",
+  "canonical_package": "frontend/brand/logo-package-v2",
+  "processing": "Canonical smooth portrait and filled badge; runtime exports are byte-identical copies.",
+  "runtime_exports": {
+    "randirandi/core/static/core/brand/logo.svg": "frontend/brand/logo-package-v2/svg/randirandi-badge-on-light.svg",
+    "randirandi/core/static/core/brand/favicon-32.png": "frontend/brand/logo-package-v2/icons/on-light/favicon-32.png",
+    "randirandi/core/static/core/brand/favicon.ico": "frontend/brand/logo-package-v2/icons/on-light/favicon.ico",
+    "randirandi/core/static/core/brand/logo-128.png": "frontend/brand/logo-package-v2/png/badges/on-light/randirandi-128.png",
+    "randirandi/core/static/core/brand/apple-touch-icon.png": "frontend/brand/logo-package-v2/icons/apple-touch-icon.png",
+    "randirandi/core/static/core/brand/app-icon-192.png": "frontend/brand/logo-package-v2/icons/app-icon-192.png",
+    "randirandi/core/static/core/brand/app-icon-512.png": "frontend/brand/logo-package-v2/icons/app-icon-512.png",
+    "randirandi/core/static/core/brand/maskable-icon-192.png": "frontend/brand/logo-package-v2/icons/maskable-icon-192.png",
+    "randirandi/core/static/core/brand/maskable-icon-512.png": "frontend/brand/logo-package-v2/icons/maskable-icon-512.png",
+    "public/randirandi.png": "frontend/brand/logo-package-v2/png/badges/on-light/randirandi-256.png",
+    "randirandi/core/static/core/brand/vipps/Vipps_Pay_Mark_Small_RGB_290125.svg": "frontend/brand/vipps/Vipps_Pay_Mark_Small_RGB_290125.svg"
+  },
+  "files": [
+    {
+      "path": "frontend/brand/logo-package-v2/icons/app-icon-192.png",
+      "sha256": "8f2d6f7626ca6674c48fc2122bfbf1d8ec689e3ec62eabb065012a6e6f72426c",
+      "bytes": 31588
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/icons/app-icon-512.png",
+      "sha256": "986b754edcc4aefa5c78b48b52451d4d0d0b34163d503682c8c46f50f193d1ad",
+      "bytes": 112992
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/icons/apple-touch-icon.png",
+      "sha256": "6e848351e7bc1510ef7a69a3600b8ca188c32a337a99200e7aa54b404efe6d40",
+      "bytes": 28660
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/icons/maskable-icon-192.png",
+      "sha256": "8f2d6f7626ca6674c48fc2122bfbf1d8ec689e3ec62eabb065012a6e6f72426c",
+      "bytes": 31588
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/icons/maskable-icon-512.png",
+      "sha256": "986b754edcc4aefa5c78b48b52451d4d0d0b34163d503682c8c46f50f193d1ad",
+      "bytes": 112992
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/icons/on-light/favicon-32.png",
+      "sha256": "2eab38dc4e82598c0227d85aa73fe077e764f00dc0130eaf08f764207e0e6179",
+      "bytes": 2408
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/icons/on-light/favicon.ico",
+      "sha256": "7323a5163a96aac18d17faef786c43739a1507987a0bb172987cd8dcd499e400",
+      "bytes": 7801
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/png/badges/on-light/randirandi-128.png",
+      "sha256": "5bee6ec1bbbf08b477bab83be6ea95840dbc41f972487de22e50126143143d27",
+      "bytes": 17658
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/png/badges/on-light/randirandi-256.png",
+      "sha256": "7d1265df4fc4967f01dc8f07014caef7f96794ed3416a86a2e9bf7ae4e594675",
+      "bytes": 40836
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/source/approved-smooth-portrait.svg",
+      "sha256": "5d787c6fd47a31d6041cb1871e0dc578117c0924be6910d484ebc35ef443f7ab",
+      "bytes": 35317
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/svg/randirandi-app-icon.svg",
+      "sha256": "d0a0431cbf8d43ce7c13c3f03e1a2ba6763225e64a2379431ab01f0767383a51",
+      "bytes": 35315
+    },
+    {
+      "path": "frontend/brand/logo-package-v2/svg/randirandi-badge-on-light.svg",
+      "sha256": "9f0d2563f14c982ab0cc4f040eb8937b100c74694d9cd7ee3f879fb0554ebee3",
+      "bytes": 35729
+    },
+    {
+      "path": "randirandi/core/static/core/brand/favicon-32.png",
+      "sha256": "2eab38dc4e82598c0227d85aa73fe077e764f00dc0130eaf08f764207e0e6179",
+      "bytes": 2408
+    },
+    {
+      "path": "randirandi/core/static/core/brand/favicon.ico",
+      "sha256": "7323a5163a96aac18d17faef786c43739a1507987a0bb172987cd8dcd499e400",
+      "bytes": 7801
+    },
+    {
+      "path": "randirandi/core/static/core/brand/logo-128.png",
+      "sha256": "5bee6ec1bbbf08b477bab83be6ea95840dbc41f972487de22e50126143143d27",
+      "bytes": 17658
+    },
+    {
+      "path": "randirandi/core/static/core/brand/logo.svg",
+      "sha256": "9f0d2563f14c982ab0cc4f040eb8937b100c74694d9cd7ee3f879fb0554ebee3",
+      "bytes": 35729
+    },
+    {
+      "path": "frontend/brand/vipps/Vipps_Pay_Mark_Small_RGB_290125.svg",
+      "sha256": "69e3f60b5eb3c6f2b7213bdf5849329ec4840121da2f28c54e8e6f06ac2ca983",
+      "bytes": 550
+    },
+    {
+      "path": "randirandi/core/static/core/brand/vipps/Vipps_Pay_Mark_Small_RGB_290125.svg",
+      "sha256": "69e3f60b5eb3c6f2b7213bdf5849329ec4840121da2f28c54e8e6f06ac2ca983",
+      "bytes": 550
+    }
+  ]
+}

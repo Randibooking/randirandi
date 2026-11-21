@@ -1,0 +1,17 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/base.html" %}
+{% block title %}{{ words.page_title }}{% endblock %}
+{% block content %}
+  <p>{{ organization.name }}</p>
+  <h1>{{ words.title }}</h1>
+  {% if unavailable %}<p class="fallback-error" role="alert">{{ words.unavailable }}</p>{% endif %}
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <label for="{{ form.identifier.id_for_label }}">{{ form.identifier.label }}</label>
+    {{ form.identifier }}
+    <p class="fallback-help" id="identifier-help">{{ words.help }}</p>
+    {% if form.identifier.errors %}<div class="fallback-error" id="identifier-error" role="alert">{{ form.identifier.errors }}</div>{% endif %}
+    <button type="submit">{{ words.continue }}</button>
+    <p class="fallback-switch"><a href="#identifier-help">{{ words.what_login }}</a></p>
+  </form>
+{% endblock %}

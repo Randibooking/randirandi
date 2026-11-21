@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+[project]
+name = "randirandi"
+version = "0.1.0"
+description = "A booking service that associations use to rent out their assets to their members."
+requires-python = "==3.14.*"
+dependencies = [
+    "django>=6.1,<6.2",
+    "django-otp==1.7.4",
+    "segno==1.6.6",
+    "gunicorn>=26,<27",
+    "psycopg[binary]>=3.3,<4",
+    "whitenoise>=6.12,<7",
+    "cryptography>=50,<51",
+]
+
+[dependency-groups]
+dev = [
+    "django-stubs>=6.1,<6.2",
+    "mypy>=2.4,<3",
+    "pytest>=9.1,<10",
+    "pytest-django>=4.14,<5",
+    "ruff>=0.16,<0.17",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+target-version = "py314"
+
+[tool.ruff.lint]
+# S is the security lint: the bandit rules.
+select = ["A", "B", "BLE", "C4", "DJ", "DTZ", "E", "F", "G", "I", "LOG", "N", "PIE", "PTH", "RUF", "S", "SIM", "T20", "UP", "W"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+# Django reads a model's options and a migration's steps from the class.
+"randirandi/*/models/*" = ["RUF012"]
+"randirandi/*/migrations/*" = ["RUF012"]
+
+[tool.mypy]
+strict = true
+plugins = ["mypy_django_plugin.main"]
+files = ["randirandi", "tests", "tools", "manage.py", "gunicorn.conf.py"]
+
+[tool.django-stubs]
+django_settings_module = "randirandi.settings"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "randirandi.settings"
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = [
+    "keeps_authenticators: reverses past migration 0044 with its refusal in force",
+    "reverses_conditions: meets the true reversal of migration 0053",
+    "reverses_language: meets the true reversal of migration 0054",
+]
+filterwarnings = [
+    "error",
+    # Static files are gathered when the image is built, not on the laptop.
+    "ignore:No directory at:UserWarning",
+]

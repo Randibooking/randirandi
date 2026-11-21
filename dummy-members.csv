@@ -1,0 +1,12 @@
+address,postal_code,city,membership,first_name,last_name,email,phone,role,full_name,address_unit,section
+Omsens gate 22,0478,Oslo,H0101,Kari,Nordmann,kari.nordmann@example.com,+47 000 00 001,Styre,Kari Nordmann,Flat 1,North
+Omsens gate 22,0478,Oslo,H0101,Ola,Nordmann,ola.nordmann@example.com,+47 000 00 002,Standard,Ola Nordmann,Flat 1,North
+Omsens gate 22,0478,Oslo,H0201,Mari,Testesen,mari.testesen@example.com,+47 000 00 003,Standard,Mari Testesen,Flat 2,North
+Krebs gate 23,0478,Oslo,H0101,Per,Eksempel,per.eksempel@example.com,+47 000 00 004,Standard,Per Eksempel,Flat 3,East
+Krebs gate 23,0478,Oslo,H0101,Anne,Eksempel,anne.eksempel@example.com,+47 000 00 005,Standard,Anne Eksempel,Flat 3,East
+Krebs gate 23,0478,Oslo,H0302,Ida,Fiktiv,ida.fiktiv@example.com,+47 000 00 006,Standard,Ida Fiktiv,Flat 4,East
+Hegermanns gate 24,0478,Oslo,H0201,Lise,Prøve,lise.prove@example.com,+47 000 00 007,Styre,Lise Prøve,Flat 5,West
+Hegermanns gate 24,0478,Oslo,H0201,Jonas,Prøve,jonas.prove@example.com,+47 000 00 008,Standard,Jonas Prøve,Flat 5,West
+Hegermanns gate 24,0478,Oslo,H0301,Erik,Testesen,erik.testesen@example.com,+47 000 00 009,Standard,Erik Testesen,Flat 6,West
+Per Kvibergs gate 25,0478,Oslo,H0401,Nils,Fiktiv,nils.fiktiv@example.com,+47 000 00 010,Standard,Nils Fiktiv,Flat 7,South
+Per Kvibergs gate 25,0478,Oslo,H0402,Nils,Fiktiv,nils.fiktiv@example.com,+47 000 00 010,Standard,Nils Fiktiv,Flat 8,South

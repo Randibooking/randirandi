@@ -1,0 +1,101 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# General model acceptance fixture: fictional test values, not a customer delivery.
+# Northside Brew Lab, a made-up brewing space open 10:00-22:00 every day:
+# one asset, used by one party at a time. Two exclusive containers cover the
+# same hours, stacked (2026-10-19, ): a 5-hour brewing session and a
+# 1-hour tapping session. A booking in either takes the asset, and the other
+# container shows that time as taken. Prices are made up.
+# The setup of Northside Brew Lab.
+# The format is described in docs/setup-file.md.
+
+format = 3
+
+[organization]
+name = "Northside Brew Lab"
+subdomain = "brew-lab"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "bookings@brew-lab.example"
+standard_role = "Member"
+member_retention_months = 12
+booking_retention_months = 36
+
+[[assets]]
+number = 1
+name = "Brewing space"
+
+[[availability_calendars]]
+asset = "Brewing space"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "10:00", end = "22:00" },
+]
+
+[[booking_types]]
+name = "Brewing"
+
+[[booking_types]]
+name = "Tapping"
+
+[[booking_categories]]
+name = "private"
+
+[[roles]]
+name = "Member"
+booking_categories = ["private"]
+admin_access = false
+
+[[booking_configurations]]
+number = 1
+asset = "Brewing space"
+booking_type = "Brewing"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+interval = "1 h"
+minimum_length = "5 h"
+maximum_length = "5 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 2
+asset = "Brewing space"
+booking_type = "Tapping"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "1 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[price_books]]
+number = 1
+name = "Prices"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "5 h", paid_per = "5 h", amount = 1500 },
+]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "1 h", paid_per = "1 h", amount = 300 },
+]

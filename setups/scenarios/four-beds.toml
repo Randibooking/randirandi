@@ -1,0 +1,118 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# General model acceptance fixture: fictional test values, not a customer delivery.
+# The room Sunshine: one asset with a floor plan "Beds" of four named
+# beds. One time line, one availability calendar and two containers back
+# to back: by the bed from Sunday to Thursday nights, the whole room on
+# Friday and Saturday nights. They could also cover the same nights: the
+# first booking would take the beds or the room (2026-10-19, ). It also
+# reads a few of the member pages' words its own way (`[labels]`).
+# The setup of Four bed example.
+# The format is described in docs/setup-file.md.
+
+format = 3
+
+[organization]
+name = "Four bed example"
+subdomain = "four-beds"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "board@four-beds.example"
+standard_role = "Member"
+member_retention_months = 12
+booking_retention_months = 36
+
+[labels]
+"place.book" = "Reserve"
+"button.book" = "Reserve"
+"cart.title" = "Your reservations"
+"outcome.booked" = "You are booked in"
+
+[[spaces]]
+number = 1
+name = "Sunshine"
+
+[[assets]]
+number = 1
+name = "Sunshine"
+space = "Sunshine"
+
+[[assets.floor_plans]]
+name = "Beds"
+spot_word = "bed"
+spots = [
+  "Bed 1",
+  "Bed 2",
+  "Bed 3",
+  "Bed 4",
+]
+
+[[availability_calendars]]
+asset = "Sunshine"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[booking_types]]
+name = "Overnight bed"
+
+[[booking_types]]
+name = "Private bedroom"
+
+[[booking_categories]]
+name = "private"
+
+[[roles]]
+name = "Member"
+booking_categories = ["private"]
+admin_access = false
+
+[[booking_configurations]]
+number = 1
+asset = "Sunshine"
+booking_type = "Overnight bed"
+period_type = "fixed"
+period_start = "17:00"
+period_end = "08:00"
+end_day = 1
+period_start_weekdays = ["mon", "tue", "wed", "thu", "sun"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+floor_plan = "Beds"
+
+[[booking_configurations]]
+number = 2
+asset = "Sunshine"
+booking_type = "Private bedroom"
+period_type = "fixed"
+period_start = "17:00"
+period_end = "08:00"
+end_day = 1
+period_start_weekdays = ["fri", "sat"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[price_books]]
+number = 1
+name = "Prices"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "15 h", paid_per = "15 h", amount = 100 },
+]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "15 h", paid_per = "15 h", amount = 400 },
+]

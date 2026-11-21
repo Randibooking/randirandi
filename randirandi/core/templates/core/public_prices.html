@@ -1,0 +1,51 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/base.html" %}
+{% load words %}
+{% block title %}{% word "title.prices" as page %}{% word "shell.product" as product %}{% word "title.page" page=page product=product %}{% endblock %}
+{% block about %}{% endblock %}
+{% block card_class %} fallback-wide{% endblock %}
+{% block content %}
+  {% include "core/_public_places.html" %}
+  <p>{{ ui.organization }}</p>
+  <h1>{% word "prices.title" %}</h1>
+  {% if table %}
+    <p>{{ table.name }}</p>
+    <div class="fallback-table">
+      <table class="fallback-prices">
+        <thead>
+          <tr>
+            <td><span class="fallback-hidden">{% word "prices.prices" %}</span></td>
+            {% for category in table.categories %}<th scope="col">{{ category.name }}</th>{% endfor %}
+          </tr>
+        </thead>
+        {% for kind in table.types %}
+          <tbody>
+            <tr><th scope="colgroup" colspan="{{ table.categories|length|add:1 }}"><h2>{{ kind.name }}</h2></th></tr>
+            {% for block in kind.blocks %}
+              <tr>
+                <th scope="row">{{ block.days }}<br><span class="fallback-quiet">{{ block.hours }}</span></th>
+                {% for cell in block.cells %}
+                  <td>
+                    {% if cell.offered %}
+                      {% for line in cell.lines %}<div>{{ line }}</div>{% endfor %}
+                      {% for line in cell.hours %}<div class="fallback-quiet">{{ line }}</div>{% endfor %}
+                    {% else %}<span class="fallback-quiet">{% word "prices.not-offered" %}</span>{% endif %}
+                  </td>
+                {% endfor %}
+              </tr>
+              {% if block.examples %}<tr><td colspan="{{ table.categories|length|add:1 }}" class="fallback-quiet">{% word "prices.examples" %}</td></tr>{% endif %}
+              {% for example in block.examples %}
+                <tr>
+                  <th scope="row" class="fallback-quiet">{{ example.hours }} · {{ example.length }}</th>
+                  {% for total in example.totals %}
+                    <td>{% if total %}<strong>{{ total }}</strong>{% else %}<span class="fallback-quiet" aria-label="{% word "prices.not-offered" %}">—</span>{% endif %}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            {% endfor %}
+          </tbody>
+        {% endfor %}
+      </table>
+    </div>
+  {% endif %}
+{% endblock %}

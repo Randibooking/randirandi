@@ -1,0 +1,3290 @@
+{
+  ".dockerignore": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".githooks/pre-commit": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".github/ISSUE_TEMPLATE/bug_report.yml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".github/ISSUE_TEMPLATE/config.yml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".github/ISSUE_TEMPLATE/feature_request.yml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".github/PULL_REQUEST_TEMPLATE.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  ".github/actions/check-setup/action.yml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".github/workflows/check.yml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".github/workflows/update.yml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".gitignore": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  ".python-version": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "CONTRIBUTING.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "Dockerfile": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "LICENSE": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "LICENSE-docs": {
+    "header": false,
+    "licence": "CC0-1.0"
+  },
+  "README.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "SECURITY.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "TRADEMARKS.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "bin/build": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/check": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/ci-part": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/dev": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/example": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/licenses": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/setup": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/styles": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/test-shares": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "bin/update": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "compose.yaml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "docker/caddy/Caddyfile": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "docker/caddy/Dockerfile": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "docker/db/Dockerfile": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "docker/db/roles.sql": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/booking-model.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/booking-video.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/commercial-licence.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/contributing.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/data-model.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/illustrated-guide.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/images/README.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/images/a-calm-handover.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/a-calm-handover.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/admin-booking-detail.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/admin-bookings-desktop.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/booking-journey.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/booking-journey.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/configuration-you-can-carry.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/configuration-you-can-carry.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/event-in-the-calendar.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/event-in-the-calendar.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/hero.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/hero.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/keep-us-together.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/keep-us-together.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/member-calendar-desktop.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/member-calendar-mobile.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/one-person-different-purposes.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/one-person-different-purposes.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/open-is-not-always-available.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/open-is-not-always-available.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/price-follows-the-booking.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/price-follows-the-booking.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/remember-what-was-booked.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/remember-what-was-booked.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/shared-inventory.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/shared-inventory.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/time-rules.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/time-rules.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/walkthrough-01-availability.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/walkthrough-02-time-and-price.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/walkthrough-03-reviewed-cart.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/walkthrough-04-confirmed.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/walkthrough-05-my-page.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/when-plans-change.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/when-plans-change.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/images/whole-house-includes-rooms.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/images/whole-house-includes-rooms.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only AND OFL-1.1"
+  },
+  "docs/media/free-booking.vtt": {
+    "header": false,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/media/free-booking.webm": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/media/poster.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "docs/product-walkthrough.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/running.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "docs/setup-file.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "dummy-members.csv": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "environment.example": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/.npmrc": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/README.md": {
+    "header": false,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "frontend/brand/asset-sources.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/README.md": {
+    "header": false,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "frontend/brand/logo-package-v2/icons/app-icon-192.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/icons/app-icon-512.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/icons/apple-touch-icon.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/icons/maskable-icon-192.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/icons/maskable-icon-512.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/icons/on-light/favicon-32.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/icons/on-light/favicon.ico": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/png/badges/on-light/randirandi-128.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/png/badges/on-light/randirandi-256.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/source/approved-smooth-portrait.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/svg/randirandi-app-icon.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/logo-package-v2/svg/randirandi-badge-on-light.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/brand/vipps/README.md": {
+    "header": false,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "frontend/brand/vipps/Vipps_Pay_Mark_Small_RGB_290125.svg": {
+    "header": false,
+    "licence": "LicenseRef-Vipps-Brand-Terms"
+  },
+  "frontend/login.scss": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/package-lock.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/package.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/AdminShell.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/AssetPages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/AuditLog.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/AvailabilityPages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/Blocks.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/BookingList.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/BookingPage.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/CancelSheet.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/ContainerPages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/EventPages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/ImportPages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/MemberPages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/OrganizationPage.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/PaymentList.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/PayoutPages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/PlanPages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/PricePages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/RolePages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/Schedule.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/TypePages.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/api.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/assetParts.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/assets.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/assets.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/audit.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/audit.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/auditLinks.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/auditLinks.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/availability.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/availability.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/blockForm.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/blockForm.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/bookings.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/bookings.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/containers.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/containers.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/crumbs.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/crumbs.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/events.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/events.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/imports.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/imports.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/members.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/members.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/organization.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/organization.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/parts.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/payouts.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/payouts.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/places.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/places.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/prices.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/prices.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/readDelay.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/readDelay.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/route.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/route.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/setup.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/setup.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/setupParts.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/admin/useRead.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/AddSheet.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/BetaBanner.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/BookMonth.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/BookWeek.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/BookedSheet.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/CartPage.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/CartPill.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/DayStrip.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/EventsPage.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/FilterControls.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/LineGroups.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/MemberShell.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/MyPage.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/OutcomePage.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/PageFooter.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/PricesPage.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/PublicPage.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/SignInAbout.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/StackSheet.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/WideWeek.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/add.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/add.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/api.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/api.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/beta-banner.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/cart.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/cart.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/categories.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/categories.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/day.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/day.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/dayline.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/dayline.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/events.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/events.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/filter.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/filter.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/fit.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/fit.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/kept.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/labels-use.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/labels.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/labels.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/mine.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/mine.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/model.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/model.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/month.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/month.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/navigation.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/places.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/places.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/plural.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/price-book-fjordside.golden.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/price-book.golden.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/prices-golden.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/prices.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/prices.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/stack.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/stack.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/store.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/store.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/useChoices.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/useTypeOrder.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/week.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/week.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/wide.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/wide.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/words.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/book/words.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/fallback.css": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/fonts.css": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/login/calling-codes.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/login/calling-codes.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/login/phone.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/login/phone.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/login/screen.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/login/screen.test.js": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/main.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "frontend/src/theme/AppTheme.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only AND MIT"
+  },
+  "frontend/src/theme/customizations/dataDisplay.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only AND MIT"
+  },
+  "frontend/src/theme/customizations/feedback.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only AND MIT"
+  },
+  "frontend/src/theme/customizations/inputs.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only AND MIT"
+  },
+  "frontend/src/theme/customizations/navigation.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only AND MIT"
+  },
+  "frontend/src/theme/customizations/surfaces.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only AND MIT"
+  },
+  "frontend/src/theme/themePrimitives.jsx": {
+    "header": true,
+    "licence": "AGPL-3.0-only AND MIT"
+  },
+  "frontend/vite.config.mjs": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "gunicorn.conf.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "images.env": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "licenses/README.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "licenses/accepted.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "licenses/texts/000882c713ee4c9729c7eeafbebb04a98a633517c2e95f1258fc488853124df3.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/037b3e9eaff51477b270e9082f54b99175e4dd893548654f00995045b68294b8.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/0cec06e0e55fbc3dc5cee4fca9b607f66cb8f4e4dbcf3b3c013594dd156732e9.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/0f0ca96f50793990031ebc488a38f7292ff70bce8ab6a8e5eeda674abc32ccdf.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/0f10bab9eedc5d50183a6dbce9f76e8db974103bfd32d64674406dfeb7654ee7.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/117da2af0d4ce0fe1c8e19b5cff9dcd806adf973d328d27b11d4448c4ff24f76.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/11d55bd4541c75ee7879547ac49089c489163dae49551389713c3d026cab383e.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/153d958ab424a0b0e01d39ca7d77a450541aa0dbf796693c7489cf5c05decfa4.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/1662fae9b5314d11cf51284e2dcd1f006a354f7343f08712a730fcff9a359801.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/1735f52fa954b27e5ad9ed2321080f3bdfdb5d7ccc00b93f6719a0372edb6f87.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/1b04e69e8b2f1c2d38e69c2262e328f6b092f08eff160395c049ff4fad530959.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/1b0a9ba95a67bc484e028b13c61b83fc5aa1ca7957d1e2d43c2b0f70d9e9dd45.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/1fa6ee8bb95a81ae3d73a5bd074a3ac380ffec13697051063ca1a601921b91db.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/20538257cfb1812d48164a7d11c0008a66b33c01b4debdfa0ec2a104fe00f028.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/2213d91c606205c71eb051a199478cdc2adde945893404d7f1421436dd6d5cc1.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/23ecfff35a5a2e80d92142f75228912c3b1abc4b5a8337a821ff4397e2f9f734.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/2e97627cb278aa7556fb9e8817368302301a595b6c7582512b8d74c57b773652.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/3a61c6c96caf5c1d9b623fb9b04c822b783dfcb78aa7e49c76a3f643e6ed7f95.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/3b0a5fca3d17942cde889069889dedbbbd075e9b599968c82a95f4d944e9b345.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/3f4609137f65070541b9214300ea0d640af8192857de0eeb2b03403003d9228a.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/3f941b3b89cf7b8370ceb83cc76d2120d471b58735d8ca60238a751a48d7f72f.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/42533f5f13d1a34663c441a9c7ad0b7bee45c1e39f1cfe979214fc9d2e3ffbc9.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/435a6722c786b0a56fbe7387028f1d9d3f3a2d0fb615bb8fee118727c3f59b7b.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/456fe85ad3e71db9523313cf7437b0f90c392d8a48c869908e46716b26d2cf53.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/4736b5d379253afa45744afc79ddb475912b213e939bdf7cb97d9a8b6f700e5f.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/483acb265f182907d1caf6cff9c16c96f31325ed23792832cc5d8b12d5f88c8a.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/4c57cedbef546270e5648786682f633b2e6ae62c8862a45797bcb6d0bffda98d.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/4eb7543b08d955a6d23fcc224601d43ff566e775be918805e26210d7f6eb4893.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/4ee0cbc51370afde358652a0f977972053729ed578b6a42f5e2a037d114f0b39.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/50627796eb4236cd05674e71d090e594447995225b7d94cd59e57c25fa3a0217.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/52412d7bc7ce4157ea628bbaacb8829e0a9cb3c58f57f99176126bc8cf2bfc85.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/53d2513c8df48a817d70537cc906b8e9c7bf2513328ff66847894773e615b37e.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/5519d0442a0d5e5e17fd32cd8ffd6d19581964509eb94c5b6ef56c363f5fbd17.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/5c496ce5ae47eb8e5ddcaa5e29c27c446a3855b19e3a66991b52f361bed22b28.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/5e325595b4ea8cfec3802f545b1def5d7b73e4a5b8e9ba63e32a320f67732292.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/5e3400b93bbb099e83e52bab885e7441750673c21f97988ca3f1240639b63283.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/5eca4ca91abe22110f4024676cd626f93090920d9986b0ab1568d998e9343551.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/60acd7711e6c138e6041836e32d922705254cc1568a30fdf16aa8f59bb87aeaa.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/6582629e2979466878f6014313dcc2f3756c9616148682227ce3063dde310750.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/65b40f81fa3f8329ee65a76d5b9ac38527f4d55317630c63295f71d3bdc73ae5.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/6cb0631f71c7749763fd3dd1d5bee52dd1070ec17f2edc1710079ad070bd2fbd.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/6e3bedbbf4310061e026d1b0b99beb390b845bfd29732455c13dd320db1feca6.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/6e8d23763cf7cb707ad8f6677aa502ebeca1dda447e6d6e57f6549c1625b9c4a.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/6fb9754611c20f6649f68805e8c990e83261f29316e29de9e6cedae607b8634c.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/7316825946e47cdfb77f6c9037c611d74d58b2e55761ea0d6dfa162fa07a926a.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/73af2949bff9296cb0f816c3be19a4da4e95adc94c1f924796e8bad3f03f2f29.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/769d154fbde32a915af110b1123650bc79f4cbe675acc66e005265bf069c6c6c.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/773e131a7684726005a7e4688a80b4620033bc08499bc1404dd1a1eb3bca725e.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/88c579c6ee44b41137a21321190d177982e5b17d4fa1b83a4a2e3ea325a8fc9a.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/89807acf2309bd285f033404ee78581602f3cd9b819a16ac2f0e5f60ff4a473e.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/8e714750725e75c8b31172ef84c0805f94873f86e3b5cfca8a948553f0778fa1.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/92b07a2e5b0e051d37dde85042c736d6d551cfcbc0983f39d7ef903b3986bbc1.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/9a9edad7baae52622bddf3c15b2ef8a33d2c89f2d25408ad13e8a7481c6b0c97.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/a877291d800ed43692f3f9ae09d8e01cc6f7293ad39d43896059c188ffbb8b7c.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/b846415d1b514e9c1dff14a22deb906d794bc546ca6129f950a18cd091e2a669.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/b8778b155bfde5a28b023a558753c0fa058a52bb9de35c343c250be1bbcdedab.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/b9adc17ad75a847d8743be2843935f0842a0ea4f45e7b0c7e17ed0be98614b9b.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/bccaa8b6c09f94e81f06696e179dbe058464bbdfbc823b6d49cada1d71e84ac3.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/bf67e2c9b7974543bb18ced3a0b37f53729aaff953b442dd89a3adaf90fd93e8.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/bf9b0d665be2a689851eea667ca9f42066ea1d903b38349c51e6a44b2577680a.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/bfa09d57d1de35570dfd7b14e1dc3f5af860728b76bdf79d8c50c5e505eef4f2.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/c29814b29591d08896b63870ffdd652785f5b2e3f902860645f00871b596068d.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/c3b7834a158755947fca791ea34b8a0d5ac01b203d8b43ecf3dfefa368eb8e72.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/d4db9ebe6f29f5168eac45ad713f055623ac5d0dcd5ba92da23d650ae012020d.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/d838c0344a0c644aa8a8621a37be48c9d2d5f6a0bb08213a97ce51607b8e574f.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/da23be69ad3ccf7a5823d62152efcd2b15de9482a5014fcb1b02844662d86abd.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/eb32ff0ec52b6ea86e3d3e06c6ad1b68ee03798b6729af13919f6d5c14b368f3.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/f657f99d3fb9647db92628e96007aabb46e5f04f33e49999075aab8e250ca7ce.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "licenses/texts/fea66f1be8df22727cd9750a85865270949107151b6414986c23ebe1929f66b3.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "manage.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "public/FAQ.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "public/README.md": {
+    "header": true,
+    "licence": "CC-BY-SA-4.0"
+  },
+  "public/randirandi.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "pyproject.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/category_hours_rule.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/admin_asset_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/admin_availability_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/admin_container_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/admin_event_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/admin_price_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/admin_setup_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/admin_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/apps.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/asset_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/audit.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/audit_log.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/audit_types.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/authentication.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/authenticator_secret.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/authenticator_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/availability.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/availability_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/block_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_calendar.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_cart.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_checkout.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_choices.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_conditions.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_emails.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_limits.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_money.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_outcome.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_quote.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/booking_words.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/calendar.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/container_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/emails.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/event_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/event_member_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/event_members.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/event_notices.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/event_pages.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/event_plan.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/login.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/login_codes.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/login_delivery.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/login_identity.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/login_session_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/add_sandbox_owner_members.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/approve_test_payment.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/erase_member.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/export_setup.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/first_administrator.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/import_dummy_members.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/import_old_bookings.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/list_clashes.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/load_setup.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/match_old_bookings.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/purge_expired.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/management/commands/reset_authenticator.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/member_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/member_calendar.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/member_data.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/member_import.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/member_imports.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/member_layout.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/member_pages.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0001_the_objects.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0002_capacity.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0003_member_import_report.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0004_audit_history.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0005_login_codes.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0006_login_requests.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0007_administrator_authenticator.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0008_payment_create_intent.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0009_payment_callbacks.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0010_payment_capture_intent.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0011_payment_recovery_intents.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0012_administrator_payment_adjustments.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0013_booking_cart_row.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0014_calendar_weeks.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0015_calendar_week_rules.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0016_floor_plans.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0017_rule_by_spot.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0018_payment_yes_or_no.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0019_group_prices.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0020_payment_create_phone.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0021_member_list_layouts.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0022_category_hours.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0023_member_last_category.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0024_vipps_description_and_receipt.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0025_member_status.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0026_booking_emails.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0027_time_zone_and_currency.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0028_operator_erases_member.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0029_audit_log_index.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0030_payment_captured_at.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0031_cancel_booking_line.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0032_blocks_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0033_member_last_login_at.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0034_order_reference.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0035_booking_limits.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0036_member_data_pages.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0037_gave_admin_access.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0038_category_icon.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0039_setup_screens_audit.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0040_member_parsers.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0041_added_member.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0042_asset_screens.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0043_session_limits.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0044_authenticator_secret_encrypted.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0045_container_screens_audit.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0046_price_book_audit.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0047_list_lookups.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0048_availability_closures.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0049_organization_audit.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0050_payment_trouble.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0051_payouts_and_fees.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0052_events.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0053_booking_conditions.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0054_organization_language.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0055_closure_vacation_reason.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0056_payment_environment.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/0057_brought_in_bookings.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/migrations/_together.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/authenticators.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/base.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/bookable.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/capacity.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/events.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/members.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/orders.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/organization.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/prices.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/models/records.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/network.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/old_booking_import.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/old_bookings.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/ordering.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/organization_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/organization_request.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/otp.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_accounts.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_adjustments.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_callbacks.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_capture.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_receipt.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_reconciliation.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_recovery.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_refunds.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_testing.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_trouble.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payment_views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payments.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payout_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/payouts.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/presentation.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/price_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/price_table.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/pricing.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/public_holidays.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/public_pages.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/refund_check.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/retention.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/second_factor.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/security_notices.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/setup.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/setup_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/LICENSE-carbon": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "randirandi/core/static/core/brand/app-icon-192.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/app-icon-512.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/apple-touch-icon.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/favicon-32.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/favicon.ico": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/logo-128.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/logo.svg": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/maskable-icon-192.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/maskable-icon-512.png": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/brand/vipps/Vipps_Pay_Mark_Small_RGB_290125.svg": {
+    "header": false,
+    "licence": "LicenseRef-Vipps-Brand-Terms"
+  },
+  "randirandi/core/static/core/manifest.webmanifest": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/static/core/third-party-notices.txt": {
+    "header": false,
+    "licence": "LicenseRef-Third-Party-Notices"
+  },
+  "randirandi/core/templates/core/_beta_bar.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/_documentation_bar.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/_public_places.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/_sign_in_about.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/_sign_in_bar.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/admin.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/authenticator.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/base.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/book.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/cart.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/code.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/conditions.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/admin_access.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/admin_access.txt": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/base.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/booking.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/booking.txt": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/email_changed.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/email_changed.txt": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/reset.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/reset.txt": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/sign_in.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/email/sign_in.txt": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/error.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/events.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/home.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/login.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/me.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/order.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/places.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/prices.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templates/core/public_prices.html": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templatetags/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/templatetags/words.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/core/validator.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/environment.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/floor_plan_rule.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/infisical.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/labels.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/limits.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/locale/en.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/locale/nb.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/logs.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/mail_configuration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/member_file.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/member_parsers.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/apps.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/backups.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/calls.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/healthcheck.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/jobs.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/management/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/management/commands/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/management/commands/answercalls.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/management/commands/apply_privileges.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/management/commands/check_privileges.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/management/commands/grants.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/management/commands/runjobs.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/middleware.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/privileges.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/ops/views.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/payment_configuration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/price_entries_rule.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/settings.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/setup_file.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/space_rule.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/urls.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/version.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/vipps.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/vipps_report.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "randirandi/wsgi.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/example.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/fjordside.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/scenarios/brew-lab.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/scenarios/cinema.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/scenarios/four-beds.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/scenarios/laundry.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/scenarios/old-mill.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/scenarios/riverside-hall.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/scenarios/sauna-palace.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "setups/scenarios/supper-club.toml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "source-licences.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "terminology.yaml": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/alert_queries.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/capacity_app.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/complete.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/empty-text.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/en.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/extra-key.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/lacks-plural-form.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/missing-key.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/one-other-placeholder.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/one-without-count.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/other-placeholder.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/catalogue_fixture/other-without-count.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/conftest.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/fresh_code.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/locale_fixture/xx.json": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/made_up.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/mail_checks.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/operator_erasure.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/payment_wire.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/payouts_made.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/proofs/capacity.sql": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/proofs/capacity_app_grants.sql": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/restore_queries.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/sealed.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_access_gate.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_added_member_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_access.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_audit_walk.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_blocks.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_booking_cancel.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_bookings.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_events.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_member_imports.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_members.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_payments.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_payouts.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_prices.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_admin_shell.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_asset_screens.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_asset_screens_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_assets.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_audit_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_audit_log.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_authenticator_secret.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_authenticator_secret_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_availability_admin.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_availability_afterwards.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_availability_closures.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_availability_closures_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_availability_setup.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_backups.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_block_lay.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_blocks_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_calendar.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_cancel.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_cart.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_checkout.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_choices.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_conditions.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_emails.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_limits.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_limits_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_outcome_read.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_quote.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_scenarios.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_booking_spots.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_brand_assets.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_calendar.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_calendar_prices.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_calendar_weeks.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_calls.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_cancel_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_capacity_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_capacity_model.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_capacity_proof.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_catalogue_check.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_category_hours.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_category_icon.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_category_icon_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_client_address.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_commit_tests.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_configuration_overlap.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_container_screens.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_container_screens_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_database_files.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_email_colours.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_emails.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_environment.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_event_members.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_events.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_events_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_example.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_floor_plans.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_floor_plans_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_fresh_code.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_gave_admin_access_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_health.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_home_screen.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_infisical.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_jobs.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_labels.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_language.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_language_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_last_login_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_licenses.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_list_lookups_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_local_span.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_login_attempt_records.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_login_codes.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_login_delivery.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_login_page.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_login_sessions.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_logs.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_mail_configuration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_add.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_bookings.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_boundary.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_calendar.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_data.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_import.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_import_privileges.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_layouts.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_pages_calls.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_pages_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_parsers.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_parsers_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_status.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_member_status_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_members.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_message_minimum.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_migration_steps.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_no_address_in_code.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_no_double_booking.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_objects.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_old_booking_import.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_old_bookings.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_operator_erasure.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_order_cancel.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_order_reference.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_ordering.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_organization_audit_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_organization_boundary.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_organization_screen.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_accounts.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_adjustments.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_callbacks.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_capture.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_details.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_environment_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_lifecycle.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_phone.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_recovery.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_return.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_testing.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_trouble.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payment_trouble_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payments.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payouts.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_payouts_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_price_book_audit_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_price_examples.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_pricing.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_privileges.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_production_payments.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_public_price_table.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_robots.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_route_requirements.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_rule_by_spot_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_same_moment.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_sandbox_owner_members.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_sandbox_router.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_second_factor.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_session_limits.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_session_limits_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_setup_capacity.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_setup_file.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_setup_load.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_setup_screens.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_setup_screens_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_source_licenses.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_space_rule.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_spot_groups_in_use.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_stacked_containers.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_system_mails.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_texts.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_time_zone_and_currency.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_time_zone_migration.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_validator.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_version.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_vipps.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_vipps_report.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_ways_around.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_web_server.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/test_without_payment.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/urls_failing.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tests/xlsx.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/__init__.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/assets.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/brand_assets.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/catalogue_check.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/commit_tests.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/database_files.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/example.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/licenses.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "tools/source_licenses.py": {
+    "header": true,
+    "licence": "AGPL-3.0-only"
+  },
+  "uv.lock": {
+    "header": false,
+    "licence": "AGPL-3.0-only"
+  }
+}

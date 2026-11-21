@@ -1,0 +1,71 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Things whose licence the check cannot read from metadata, or whose metadata
+# is messy, accepted once by hand (ADR-0024). Each entry names the thing, the
+# version (an image's tag, an action's version comment), its licence and why
+# it is fine. A new version needs a new entry.
+
+[[accepted]]
+name = "python"
+version = "3.14-slim-bookworm"
+licence = "PSF-2.0; the Debian packages in it are GPL and other free licences"
+reason = "Runs on our hosting only; the image is handed to nobody."
+
+[[accepted]]
+name = "ghcr.io/astral-sh/uv"
+version = "0.13"
+licence = "MIT OR Apache-2.0"
+reason = "Build tool; only copied into the build stage."
+
+[[accepted]]
+name = "postgres"
+version = "17-bookworm"
+licence = "PostgreSQL; the Debian packages in it are GPL and other free licences"
+reason = "Runs on our hosting and in tests; handed to nobody. Free, no fee."
+
+[[accepted]]
+name = "caddy"
+version = "2-alpine"
+licence = "Apache-2.0"
+reason = "Runs on our hosting only; Alpine's packages are free licences."
+
+[[accepted]]
+name = "ghcr.io/gitleaks/gitleaks"
+version = "latest"
+licence = "MIT"
+reason = "Secret scanner in the checks; not shipped."
+
+[[accepted]]
+name = "actions/checkout"
+version = "v4"
+licence = "MIT"
+reason = "GitHub action in our checks; not shipped."
+
+[[accepted]]
+name = "actions/setup-node"
+version = "v4"
+licence = "MIT"
+reason = "GitHub action in our checks; not shipped."
+
+[[accepted]]
+name = "astral-sh/setup-uv"
+version = "v7"
+licence = "MIT"
+reason = "GitHub action in our checks; not shipped."
+
+[[accepted]]
+name = "opentofu/setup-opentofu"
+version = "v1"
+licence = "MPL-2.0"
+reason = "GitHub action in our checks; not shipped."
+
+[[accepted]]
+name = "peter-evans/create-pull-request"
+version = "v7"
+licence = "MIT"
+reason = "GitHub action in the weekly update; not shipped."
+
+[[accepted]]
+name = "cffi"
+version = "2.1.1"
+licence = "MIT-0"
+reason = "cryptography's C binding. MIT-0 is the MIT licence without the attribution duty: free, no fee, nothing to hand out."

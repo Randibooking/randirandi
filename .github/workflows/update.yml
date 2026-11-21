@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: Weekly dependencies and images
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: weekly-update
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: ./.github/actions/check-setup
+      - run: bin/update
+      - uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          branch: maintenance/weekly-update
+          add-paths: |
+            images.env
+            uv.lock
+          commit-message: 'chore: update dependencies and base images'
+          title: 'chore: update dependencies and base images'
+          body: |
+            Update the pinned base-image digests and dependencies within their declared ranges.
+
+            Validation: bin/update ran the full bin/check suite before opening this change.
+            Review and merge are manual. Deployment needs a separate approved release.

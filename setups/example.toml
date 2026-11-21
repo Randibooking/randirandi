@@ -1,0 +1,272 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# A made-up organization, written out in full: Harbour View Housing Co-op.
+#
+# It shows every part of a setup file, and it is different on purpose from
+# any real organization's. The format is described in docs/setup-file.md.
+#
+# A setup file holds no members, no secrets and no personal data.
+
+format = 1
+
+[organization]
+name = "Harbour View Housing Co-op"
+subdomain = "harbourview"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "board@harbourview.example"
+standard_role = "Standard"
+member_retention_months = 12
+booking_retention_months = 36
+
+# --- Assets -----------------------------------------------------------------
+
+[[assets]]
+number = 1
+name = "Guest room"
+description = "A room with two beds on the ground floor."
+
+[[assets]]
+number = 2
+name = "Function room"
+description = "Seats 40. Kitchen and sound system."
+
+[[assets]]
+number = 3
+name = "Laundry room"
+description = "Two washing machines and a dryer."
+
+# --- Availability calendars ---------------------------------------------------
+# When each asset can be rented at all. A weekday that is not named is not
+# available. Without a start date the calendar applies from the day the setup
+# is loaded.
+
+[[availability_calendars]]
+asset = "Guest room"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[availability_calendars]]
+asset = "Function room"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "08:00", end = "23:00" },
+]
+
+# Closed on Sundays.
+[[availability_calendars]]
+asset = "Laundry room"
+start_date = 2027-01-01
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat"], start = "07:00", end = "22:00" },
+]
+
+# --- Booking types ------------------------------------------------------------
+# What is booked. Members choose from this list, in this order.
+
+[[booking_types]]
+name = "Overnight stay"
+description = "One night, from the afternoon to the next morning."
+
+[[booking_types]]
+name = "Room hire"
+description = "For a party, a meeting or a course."
+
+[[booking_types]]
+name = "Laundry"
+
+# --- Booking categories -------------------------------------------------------
+# What a booking is for.
+
+[[booking_categories]]
+name = "private"
+
+[[booking_categories]]
+name = "work"
+
+[[booking_categories]]
+name = "internal"
+
+# --- Roles --------------------------------------------------------------------
+# Which booking categories a member can book.
+
+[[roles]]
+name = "Standard"
+booking_categories = ["private", "work"]
+admin_access = false
+
+[[roles]]
+name = "Board"
+booking_categories = ["private", "work", "internal"]
+admin_access = false
+
+[[roles]]
+name = "Administrator"
+booking_categories = ["private", "work", "internal"]
+admin_access = true
+
+# --- Booking configurations ---------------------------------------------------
+# When one asset can be booked under one booking type, and for which booking
+# categories.
+
+# A night in the guest room, every day of the week, until the summer prices
+# take over.
+[[booking_configurations]]
+number = 1
+asset = "Guest room"
+booking_type = "Overnight stay"
+period_type = "fixed"
+period_start = "15:00"
+period_end = "11:00"
+end_day = 1
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+stop_week = "2027-W21"
+status = "enabled"
+price_book = "Standard"
+booking_categories = ["private", "internal"]
+
+# The same night from week 22, which starts on Monday 31 May, at the summer
+# prices. Prepared and not switched on yet.
+[[booking_configurations]]
+number = 2
+asset = "Guest room"
+booking_type = "Overnight stay"
+period_type = "fixed"
+period_start = "15:00"
+period_end = "11:00"
+end_day = 1
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+start_week = "2027-W22"
+status = "disabled"
+price_book = "Summer 2027"
+booking_categories = ["private", "internal"]
+
+# The function room on weekdays: any start on the hour, from 1 to 12 hours.
+[[booking_configurations]]
+number = 3
+asset = "Function room"
+booking_type = "Room hire"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "12 h"
+status = "enabled"
+price_book = "Standard"
+booking_categories = ["private", "work", "internal"]
+
+# The function room at the weekend: the whole day as one booking.
+[[booking_configurations]]
+number = 4
+asset = "Function room"
+booking_type = "Room hire"
+period_type = "fixed"
+period_start = "12:00"
+period_end = "23:00"
+end_day = 0
+period_start_weekdays = ["sat", "sun"]
+status = "enabled"
+price_book = "Standard"
+booking_categories = ["private", "internal"]
+
+# Laundry: five rows of three hours each day. Interval, minimum and maximum
+# are the same, so a booking is always one row.
+[[booking_configurations]]
+number = 5
+asset = "Laundry room"
+booking_type = "Laundry"
+period_type = "flexible"
+period_start = "07:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat"]
+interval = "3 h"
+minimum_length = "3 h"
+maximum_length = "3 h"
+status = "enabled"
+price_book = "Standard"
+booking_categories = ["private"]
+
+# --- Price books --------------------------------------------------------------
+# What each booking configuration costs in each of its booking categories.
+# Amounts are in kroner. A free booking has a price of zero, entered on
+# purpose.
+
+[[price_books]]
+number = 1
+name = "Standard"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "private"
+tiers_go_by = "length"
+tiers = [{ up_to = "20 h", paid_per = "20 h", amount = 400 }]
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "internal"
+tiers_go_by = "length"
+tiers = [{ up_to = "20 h", paid_per = "20 h", amount = 0 }]
+
+# The first 4 hours cost kr 300. After that each started 4 hours cost kr 150.
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "private"
+tiers_go_by = "length"
+tiers = [
+  { up_to = "4 h", paid_per = "4 h", amount = 300 },
+  { up_to = "12 h", paid_per = "4 h", amount = 150 },
+]
+
+# Until 17:00 each started hour costs kr 200. From 17:00 the evening is paid
+# as one piece, kr 1500.
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "work"
+tiers_go_by = "time of day"
+tiers = [
+  { up_to = "17:00", paid_per = "1 h", amount = 200 },
+  { up_to = "22:00", paid_per = "5 h", amount = 1500 },
+]
+
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "internal"
+tiers_go_by = "length"
+tiers = [{ up_to = "12 h", paid_per = "12 h", amount = 0 }]
+
+[[price_books.entries]]
+booking_configuration = 4
+booking_category = "private"
+tiers_go_by = "length"
+tiers = [{ up_to = "11 h", paid_per = "11 h", amount = 1500 }]
+
+[[price_books.entries]]
+booking_configuration = 4
+booking_category = "internal"
+tiers_go_by = "length"
+tiers = [{ up_to = "11 h", paid_per = "11 h", amount = 0 }]
+
+[[price_books.entries]]
+booking_configuration = 5
+booking_category = "private"
+tiers_go_by = "length"
+tiers = [{ up_to = "3 h", paid_per = "3 h", amount = 0 }]
+
+[[price_books]]
+number = 2
+name = "Summer 2027"
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "private"
+tiers_go_by = "length"
+tiers = [{ up_to = "20 h", paid_per = "20 h", amount = 550 }]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "internal"
+tiers_go_by = "length"
+tiers = [{ up_to = "20 h", paid_per = "20 h", amount = 0 }]

@@ -1,0 +1,204 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# General model acceptance fixture: fictional test values, not a customer delivery.
+# Two washers and a dryer in the space "Laundry room", each machine an
+# asset with a floor plan of one spot and exclusive containers Monday to
+# Saturday. "Whole laundry room" is an asset marked as covering the
+# space, hired on Sundays, back to back with the machines: a booking of it
+# takes every machine, and a machine booking takes the room (2026-10-19, ).
+# The setup of Laundry example.
+# The format is described in docs/setup-file.md.
+
+format = 3
+
+[organization]
+name = "Laundry example"
+subdomain = "laundry"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "board@laundry.example"
+standard_role = "Member"
+member_retention_months = 12
+booking_retention_months = 36
+
+[[spaces]]
+number = 1
+name = "Laundry room"
+
+[[assets]]
+number = 1
+name = "Washer A"
+space = "Laundry room"
+
+[[assets.floor_plans]]
+spot_word = "machine"
+spots = 1
+
+[[assets]]
+number = 2
+name = "Washer B"
+space = "Laundry room"
+
+[[assets.floor_plans]]
+spot_word = "machine"
+spots = 1
+
+[[assets]]
+number = 3
+name = "Dryer"
+space = "Laundry room"
+
+[[assets.floor_plans]]
+spot_word = "machine"
+spots = 1
+
+[[assets]]
+number = 4
+name = "Whole laundry room"
+space = "Laundry room"
+whole_space = true
+
+[[availability_calendars]]
+asset = "Washer A"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[availability_calendars]]
+asset = "Washer B"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[availability_calendars]]
+asset = "Dryer"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[availability_calendars]]
+asset = "Whole laundry room"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[booking_types]]
+name = "Machine use"
+
+[[booking_types]]
+name = "Whole room hire"
+
+[[booking_categories]]
+name = "private"
+
+[[roles]]
+name = "Member"
+booking_categories = ["private"]
+admin_access = false
+
+[[booking_configurations]]
+number = 1
+asset = "Washer A"
+booking_type = "Machine use"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "8 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 2
+asset = "Washer B"
+booking_type = "Machine use"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "8 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 3
+asset = "Dryer"
+booking_type = "Machine use"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "8 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 4
+asset = "Whole laundry room"
+booking_type = "Whole room hire"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["sun"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "8 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[price_books]]
+number = 1
+name = "Prices"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "8 h", paid_per = "1 h", amount = 20 },
+]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "8 h", paid_per = "1 h", amount = 20 },
+]
+
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "8 h", paid_per = "1 h", amount = 20 },
+]
+
+[[price_books.entries]]
+booking_configuration = 4
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "8 h", paid_per = "1 h", amount = 100 },
+]

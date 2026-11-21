@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-only
+# One part of GitHub's checks, which run side by side :
+# bin/ci-part 0 N   every check but the tests, which are only collected
+# bin/ci-part I N   share I of every test, the tests split into N shares
+set -euo pipefail
+cd "$(dirname "$0")/.."
+part="$1"
+count="$2"
+if [ "$part" = 0 ]; then
+    PYTEST_ADDOPTS="--collect-only -qq" exec bin/check
+fi
+share="$(printf '%s\n' tests/test_*.py \
+    | uv run --locked --quiet python -m tools.commit_tests --shares "$count" \
+    | sed -n "${part}p")"
+if [ -z "$share" ]; then
+    echo "Share $part of $count holds no tests." >&2
+    exit 1
+fi
+logs="$(mktemp -d)"
+printf '%s\n' "$share" | bin/test-shares "$logs"

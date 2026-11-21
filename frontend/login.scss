@@ -1,0 +1,55 @@
+/* SPDX-License-Identifier: AGPL-3.0-only */
+@use '@carbon/styles/scss/config' with ($css--font-face: false);
+@use '@carbon/styles/scss/reset';
+@use '@carbon/styles/scss/theme';
+@use '@carbon/styles/scss/themes';
+@use '@carbon/styles/scss/type';
+@use '@carbon/styles/scss/layout';
+@use '@carbon/styles/scss/components/button';
+@use '@carbon/styles/scss/components/text-input';
+
+:root { @include theme.theme(themes.$white); }
+
+body {
+  margin: 0;
+  background: theme.$background;
+  color: theme.$text-primary;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  @include type.type-style('body-01');
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid theme.$border-subtle-00;
+  @include type.type-style('heading-02');
+}
+
+.brand-mark {
+  display: block;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.login {
+  max-width: 28rem;
+  margin: clamp(2rem, 10vh, 6rem) auto;
+  padding: 0 1.5rem;
+}
+
+.organization { color: theme.$text-secondary; overflow-wrap: anywhere; }
+h1 { @include type.type-style('heading-05'); margin: 0.5rem 0 1rem; }
+.introduction { margin-bottom: 2rem; }
+.cds--form-item { margin-bottom: 1.5rem; }
+.cds--form__helper-text { max-width: 100%; }
+.field-error { color: theme.$support-error; margin-top: 0.5rem; }
+.notice {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background: theme.$layer-01;
+  border-left: 3px solid theme.$support-info;
+}

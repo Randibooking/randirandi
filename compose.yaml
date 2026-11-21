@@ -1,0 +1,192 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# The stack: Caddy in front, the app, the job runner and Postgres.
+#
+# Start it through bin/dev on the laptop. The image names come from
+# images.env and everything else from the environment; see
+# environment.example. Nothing here is a secret.
+
+name: randirandi
+
+x-hardened: &hardened
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+
+x-app: &app
+  <<: *hardened
+  image: randirandi-app:${RANDIRANDI_IMAGE_TAG:-dev}
+  build:
+    context: .
+    args:
+      PYTHON_IMAGE: ${PYTHON_IMAGE:?}
+      UV_IMAGE: ${UV_IMAGE:?}
+  tmpfs: [/tmp]
+
+x-app-environment: &app-environment
+  RANDIRANDI_ENVIRONMENT: ${RANDIRANDI_ENVIRONMENT:?}
+  RANDIRANDI_ALLOWED_HOSTS: ${RANDIRANDI_ALLOWED_HOSTS:?}
+  RANDIRANDI_ORGANIZATION_DOMAIN: ${RANDIRANDI_ORGANIZATION_DOMAIN:?}
+  RANDIRANDI_SENDER: ${RANDIRANDI_SENDER:?}
+  RANDIRANDI_DOCUMENTATION_URL: ${RANDIRANDI_DOCUMENTATION_URL:-}
+  RANDIRANDI_SECRET_KEY: ${RANDIRANDI_SECRET_KEY:?}
+  RANDIRANDI_AUTHENTICATOR_KEY: ${RANDIRANDI_AUTHENTICATOR_KEY:-}
+  RANDIRANDI_DEBUG: ${RANDIRANDI_DEBUG:-}
+  RANDIRANDI_EMAIL_TO_CONSOLE: ${RANDIRANDI_EMAIL_TO_CONSOLE:-}
+  RANDIRANDI_PAYMENT_TEST_ENVIRONMENT: ${RANDIRANDI_PAYMENT_TEST_ENVIRONMENT:-}
+  RANDIRANDI_MADE_UP_MEMBERS: ${RANDIRANDI_MADE_UP_MEMBERS:-}
+  # Empty: the access gate is off, as it is on the laptop.
+  RANDIRANDI_ACCESS_GATE_PASSWORD: ${RANDIRANDI_ACCESS_GATE_PASSWORD:-}
+  RANDIRANDI_DB_HOST: db
+  RANDIRANDI_DB_NAME: randirandi
+  # The app and the job runner read and write rows. They cannot change a
+  # table.
+  RANDIRANDI_DB_USER: randirandi_app
+  RANDIRANDI_DB_PASSWORD: ${RANDIRANDI_DB_APP_PASSWORD:?}
+
+services:
+  caddy:
+    <<: *hardened
+    image: randirandi-caddy:${RANDIRANDI_IMAGE_TAG:-dev}
+    build:
+      context: docker/caddy
+      args:
+        CADDY_IMAGE: ${CADDY_IMAGE:?}
+    # Caddy is not root, and needs this one right to listen on 80 and 443.
+    cap_add: [NET_BIND_SERVICE]
+    environment:
+      RANDIRANDI_SITE_ADDRESS: ${RANDIRANDI_SITE_ADDRESS:?}
+      RANDIRANDI_TLS: ${RANDIRANDI_TLS:?}
+    # Closed by default: the laptop listens on itself only.
+    ports:
+      - "${RANDIRANDI_BIND:-127.0.0.1}:${RANDIRANDI_HTTP_PORT:-8080}:80"
+      - "${RANDIRANDI_BIND:-127.0.0.1}:${RANDIRANDI_HTTPS_PORT:-8443}:443"
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+    networks: [web]
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+
+  app:
+    <<: *app
+    environment: *app-environment
+    networks: [web, db]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-m", "randirandi.ops.healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 5s
+    restart: unless-stopped
+
+  jobs:
+    <<: *app
+    command: ["python", "manage.py", "runjobs"]
+    environment: *app-environment
+    # The job runner speaks to the database only. It gets a way out when its
+    # first job needs one.
+    networks: [db]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - test "$$(( $$(date +%s) - $$(stat -c %Y /tmp/randirandi-jobs.heartbeat) ))" -lt 60
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 10s
+    restart: unless-stopped
+
+  # Runs once at every start: the deploy check, the grants, then the
+  # migrations, as the user that owns the tables. The app does not start if
+  # one of them fails. At the platform the second container runs the same
+  # three for a deploy (randirandi/ops/calls.py).
+  migrate:
+    <<: *app
+    command:
+      - sh
+      - -ec
+      - |
+        python manage.py check --deploy --fail-level WARNING
+        python manage.py grants
+        python manage.py migrate --no-input
+    environment:
+      <<: *app-environment
+      RANDIRANDI_DB_USER: randirandi_owner
+      RANDIRANDI_DB_PASSWORD: ${RANDIRANDI_DB_OWNER_PASSWORD:?}
+    networks: [db]
+    depends_on:
+      db-roles:
+        condition: service_completed_successfully
+    restart: "no"
+
+  # Runs once at every start: makes the two database users and sets their
+  # passwords to what the environment holds. It has no network; it reaches
+  # the database over its socket.
+  db-roles:
+    <<: *hardened
+    image: randirandi-db-roles:${RANDIRANDI_IMAGE_TAG:-dev}
+    build:
+      context: docker/db
+      args:
+        POSTGRES_IMAGE: ${POSTGRES_IMAGE:?}
+    user: postgres
+    command: ["psql", "--no-psqlrc", "--quiet", "--username", "postgres", "--dbname", "postgres", "--file", "/roles.sql"]
+    environment:
+      RANDIRANDI_DB_OWNER_PASSWORD: ${RANDIRANDI_DB_OWNER_PASSWORD:?}
+      RANDIRANDI_DB_APP_PASSWORD: ${RANDIRANDI_DB_APP_PASSWORD:?}
+    volumes:
+      - db-socket:/var/run/postgresql
+    network_mode: none
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  db:
+    <<: *hardened
+    image: ${POSTGRES_IMAGE:?}
+    user: postgres
+    # The superuser gets a password nobody knows. It is reached over the
+    # socket only, from inside the stack. The password is set when the
+    # database is first made and is not used after that.
+    entrypoint:
+      - sh
+      - -ec
+      - |
+        POSTGRES_PASSWORD="$$(head -c 32 /dev/urandom | base64)"
+        export POSTGRES_PASSWORD
+        exec docker-entrypoint.sh postgres
+    environment:
+      POSTGRES_DB: randirandi
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - db-socket:/var/run/postgresql
+    tmpfs: [/tmp]
+    # No port is published. Only the stack's own containers reach it.
+    networks: [db]
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username", "postgres", "--dbname", "randirandi"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+
+networks:
+  web:
+  # No way out to the internet from here.
+  db:
+    internal: true
+
+volumes:
+  db-data:
+  db-socket:
+  caddy-data:
+  caddy-config:

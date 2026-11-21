@@ -1,0 +1,21 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/base.html" %}
+{% block title %}{{ title }} · Admin · RandiRandi{% endblock %}
+{% block footer %}{% include "core/_documentation_bar.html" %}{% endblock %}
+{% block content %}
+  <nav>
+    {% for group, items in places %}
+      <h2>{{ group }}</h2>
+      <ul>
+        {% for key, label in items %}
+          <li><a href="{% url 'admin-place' place=key %}"{% if key == place %} aria-current="page"{% endif %}>{{ label }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </nav>
+  <h1>{{ title }}</h1>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Sign out</button>
+  </form>
+{% endblock %}

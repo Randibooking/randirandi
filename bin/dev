@@ -1,0 +1,37 @@
+#!/bin/sh
+# SPDX-License-Identifier: AGPL-3.0-only
+# Docker Compose for the stack on the laptop.
+#   bin/dev up --build -d      start, or start again after a change
+#   bin/dev ps                 what is running
+#   bin/dev logs -f app        follow the app's log
+#   bin/dev down               stop; add -v to throw the database away
+# The image names come from images.env. A secret comes from the environment
+# when it is there. When it is not, a throwaway value is made for this run.
+# Nothing is written to a file. A new start therefore gets new values: the
+# database users get the new passwords, and logins made before it end.
+set -eu
+cd "$(dirname "$0")/.."
+
+: "${RANDIRANDI_ENVIRONMENT:=sandbox}"
+if [ "$RANDIRANDI_ENVIRONMENT" != sandbox ]; then
+    echo "bin/dev runs a sandbox on the laptop. It does not run '$RANDIRANDI_ENVIRONMENT'." >&2
+    exit 1
+fi
+: "${RANDIRANDI_ALLOWED_HOSTS:=localhost}"
+: "${RANDIRANDI_ORGANIZATION_DOMAIN:=localhost}"
+: "${RANDIRANDI_SENDER:=RandiRandi <post@localhost>}"
+: "${RANDIRANDI_SITE_ADDRESS:=localhost}"
+: "${RANDIRANDI_TLS:=internal}"
+: "${RANDIRANDI_SECRET_KEY:=$(openssl rand -hex 32)}"
+: "${RANDIRANDI_AUTHENTICATOR_KEY:=$(openssl rand -hex 32)}"
+: "${RANDIRANDI_DB_OWNER_PASSWORD:=$(openssl rand -hex 32)}"
+: "${RANDIRANDI_DB_APP_PASSWORD:=$(openssl rand -hex 32)}"
+export RANDIRANDI_ENVIRONMENT RANDIRANDI_ALLOWED_HOSTS RANDIRANDI_ORGANIZATION_DOMAIN \
+    RANDIRANDI_SENDER RANDIRANDI_SITE_ADDRESS \
+    RANDIRANDI_TLS RANDIRANDI_SECRET_KEY RANDIRANDI_AUTHENTICATOR_KEY RANDIRANDI_DB_OWNER_PASSWORD \
+    RANDIRANDI_DB_APP_PASSWORD
+
+for argument in "$@"; do
+    case "$argument" in build|--build) bin/styles --if-current; break ;; esac
+done
+exec docker compose --env-file images.env "$@"

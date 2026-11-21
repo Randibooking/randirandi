@@ -1,0 +1,16 @@
+#!/bin/sh
+# SPDX-License-Identifier: AGPL-3.0-only
+# Builds the images, after every check has passed. The images are marked
+# with the commit they were built from. A build from files that are not
+# committed is marked "dev" and is for the laptop only.
+set -eu
+cd "$(dirname "$0")/.."
+
+bin/check
+
+tag=dev
+if git rev-parse --verify --quiet HEAD >/dev/null && [ -z "$(git status --porcelain)" ]; then
+    tag="$(git rev-parse --short=12 HEAD)"
+fi
+RANDIRANDI_IMAGE_TAG="$tag" bin/dev build
+echo "Built randirandi-app:$tag randirandi-caddy:$tag and randirandi-db-roles:$tag."

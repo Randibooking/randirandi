@@ -1,0 +1,2 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% load words %}{% if member %}{% include "core/places.html" %}{% else %}<p><a href="{% url 'login' %}">{% word "common.sign-in" %}</a></p>{% endif %}

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-only
+# The weekly update: the newest digest of every base image, the newest
+# versions the dependency ranges allow, then every check. Read the difference
+# and commit it.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+updated="$(mktemp)"
+trap 'rm -f "$updated"' EXIT
+while IFS= read -r line; do
+    case "$line" in
+        *_IMAGE=*)
+            name="${line%%=*}"
+            reference="${line#*=}"
+            tagged="${reference%%@*}"
+            docker pull --quiet "$tagged" >/dev/null
+            repository="${tagged%:*}"
+            # Docker Hub's own images are listed without their "library/".
+            digest="$(docker image inspect "$tagged" --format '{{range .RepoDigests}}{{println .}}{{end}}' \
+                | grep -F "${repository#docker.io/}@" | head -n 1 | sed 's/.*@//')"
+            if [ -z "$digest" ]; then
+                echo "No digest found for $tagged." >&2
+                exit 1
+            fi
+            printf '%s=%s@%s\n' "$name" "$tagged" "$digest" >> "$updated"
+            ;;
+        *)
+            printf '%s\n' "$line" >> "$updated"
+            ;;
+    esac
+done < images.env
+cat "$updated" > images.env
+
+uv lock --upgrade
+
+bin/check
+git --no-pager diff --stat -- images.env uv.lock

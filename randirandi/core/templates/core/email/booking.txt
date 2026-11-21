@@ -1,0 +1,16 @@
+{% autoescape off %}RandiRandi
+
+{{ heading }}
+{{ organization }}{% for fact in facts %}
+{{ fact }}{% endfor %}
+{% for day in days %}
+{{ day.date }}{% for line in day.lines %}
+{{ line.time }}{% if line.price %}: {{ line.price }}{% endif %}
+{{ line.what }} · {{ line.as }}{% if line.places %} · {{ line.places }}{% endif %}{% endfor %}
+{% endfor %}{% for paragraph in after %}
+{{ paragraph }}{% endfor %}{% if link %}
+{{ link.text }}: {{ link.url }}{% endif %}{% if note %}
+{{ note }}{% endif %}
+
+{{ sign_off }}
+{% endautoescape %}

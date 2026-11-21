@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Caddy ends TLS and hands every request to the app.
+#
+# RANDIRANDI_SITE_ADDRESS is the address served. RANDIRANDI_TLS says where
+# the certificate comes from: "internal" on the laptop, where Caddy signs it
+# itself, or an email address for the certificate authority on a server.
+
+{
+	admin off
+	skip_install_trust
+}
+
+{$RANDIRANDI_SITE_ADDRESS} {
+	tls {$RANDIRANDI_TLS}
+	encode zstd gzip
+	# The app sets its own security headers, so that they are the same
+	# where Caddy is not in front of it.
+	header -Server
+	reverse_proxy app:8000
+}

@@ -1,0 +1,14 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/base.html" %}
+{% load words %}
+{% block title %}{% word "place.me" as page %}{% word "shell.product" as product %}{% word "title.page" page=page product=product %}{% endblock %}
+{% block content %}
+  {% include "core/places.html" %}
+  <p>{{ ui.organization }}</p>
+  <h1>{% word "place.me" %}</h1>
+  {% if ui.admin %}<p><a href="{% url 'admin' %}">{% word "place.admin" %}</a></p>{% endif %}
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">{% word "me.sign-out" %}</button>
+  </form>
+{% endblock %}

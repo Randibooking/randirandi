@@ -1,0 +1,284 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# General model acceptance fixture: fictional test values, not a customer delivery.
+# Three saunas of eight spots without names and a gym of 20, in one space
+# and none marked: each asset is booked on its own. Weekday shared sauna
+# 10:00-18:00, capacity 8 and 100/50 kr tiers follow the approved
+# example. Hourly starts, 1-8 daytime hours, private 18:00-22:00 at
+# 800 kr, no weekend sauna configurations and the gym settings are
+# fictional test choices.
+# The setup of Sauna Palace.
+# The format is described in docs/setup-file.md.
+
+format = 3
+
+[organization]
+name = "Sauna Palace"
+subdomain = "sauna-palace"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "board@sauna-palace.example"
+standard_role = "Member"
+member_retention_months = 12
+booking_retention_months = 36
+
+[[spaces]]
+number = 1
+name = "Sauna Palace"
+
+[[assets]]
+number = 1
+name = "Sauna 1"
+space = "Sauna Palace"
+
+[[assets.floor_plans]]
+spot_word = "place"
+spots = 8
+
+[[assets]]
+number = 2
+name = "Sauna 2"
+space = "Sauna Palace"
+
+[[assets.floor_plans]]
+spot_word = "place"
+spots = 8
+
+[[assets]]
+number = 3
+name = "Sauna 3"
+space = "Sauna Palace"
+
+[[assets.floor_plans]]
+spot_word = "place"
+spots = 8
+
+[[assets]]
+number = 4
+name = "Gym"
+space = "Sauna Palace"
+
+[[assets.floor_plans]]
+spot_word = "place"
+spots = 20
+
+[[availability_calendars]]
+asset = "Sauna 1"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[availability_calendars]]
+asset = "Sauna 2"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[availability_calendars]]
+asset = "Sauna 3"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[availability_calendars]]
+asset = "Gym"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"], start = "00:00", end = "24:00" },
+]
+
+[[booking_types]]
+name = "Sauna visit"
+
+[[booking_types]]
+name = "Private sauna"
+
+[[booking_types]]
+name = "Gym visit"
+
+[[booking_categories]]
+name = "private"
+
+[[roles]]
+name = "Member"
+booking_categories = ["private"]
+admin_access = false
+
+[[booking_configurations]]
+number = 1
+asset = "Sauna 1"
+booking_type = "Sauna visit"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "8 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+
+[[booking_configurations]]
+number = 2
+asset = "Sauna 1"
+booking_type = "Private sauna"
+period_type = "fixed"
+period_start = "18:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 3
+asset = "Sauna 2"
+booking_type = "Sauna visit"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "8 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+
+[[booking_configurations]]
+number = 4
+asset = "Sauna 2"
+booking_type = "Private sauna"
+period_type = "fixed"
+period_start = "18:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 5
+asset = "Sauna 3"
+booking_type = "Sauna visit"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "8 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+
+[[booking_configurations]]
+number = 6
+asset = "Sauna 3"
+booking_type = "Private sauna"
+period_type = "fixed"
+period_start = "18:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 7
+asset = "Gym"
+booking_type = "Gym visit"
+period_type = "flexible"
+period_start = "06:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "2 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+
+[[price_books]]
+number = 1
+name = "Prices"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "1 h", paid_per = "1 h", amount = 100 },
+  { up_to = "8 h", paid_per = "1 h", amount = 50 },
+]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "4 h", paid_per = "4 h", amount = 800 },
+]
+
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "1 h", paid_per = "1 h", amount = 100 },
+  { up_to = "8 h", paid_per = "1 h", amount = 50 },
+]
+
+[[price_books.entries]]
+booking_configuration = 4
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "4 h", paid_per = "4 h", amount = 800 },
+]
+
+[[price_books.entries]]
+booking_configuration = 5
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "1 h", paid_per = "1 h", amount = 100 },
+  { up_to = "8 h", paid_per = "1 h", amount = 50 },
+]
+
+[[price_books.entries]]
+booking_configuration = 6
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "4 h", paid_per = "4 h", amount = 800 },
+]
+
+[[price_books.entries]]
+booking_configuration = 7
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "1 h", paid_per = "1 h", amount = 80 },
+  { up_to = "2 h", paid_per = "1 h", amount = 40 },
+]

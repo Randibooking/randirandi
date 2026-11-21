@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: Bug report
+description: Describe a reproducible problem using fictional data.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report suspected vulnerabilities privately as described in SECURITY.md.
+        Do not include real members, credentials, authenticator secrets, payment
+        details or production captures. For account or booking help, contact
+        your organization's administrator.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Identify the version you ran and whether this was a local or self-hosted instance.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Use fictional configuration and members. Include the smallest example that demonstrates the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: What happened instead? Include the visible error text if it contains no personal or secret values.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Relevant operating system, browser, Docker/Compose and runtime versions. Omit hostnames or identifiers that expose private infrastructure.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted evidence (optional)
+      description: Short logs or screenshots from the fictional reproduction. Remove all personal data and secrets before submitting.

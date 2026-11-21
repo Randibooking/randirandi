@@ -1,0 +1,8 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/base.html" %}
+{% load words %}
+{% block title %}{% word "title.events" as page %}{% word "shell.product" as product %}{% word "title.page" page=page product=product %}{% endblock %}
+{% block content %}
+  {% include "core/places.html" %}
+  <h1>{% word "title.events" %}</h1>
+{% endblock %}

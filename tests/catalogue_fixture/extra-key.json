@@ -1,0 +1,7 @@
+{
+  "greeting": "Hei",
+  "welcome": "Velkommen, {name}",
+  "farewell": "Ha det",
+  "box.one": "{count} eske",
+  "box.other": "{count} esker"
+}

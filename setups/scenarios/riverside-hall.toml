@@ -1,0 +1,181 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# General model acceptance fixture: fictional test values, not a customer delivery.
+# Riverside Hall, the made-up venue of the booking container's model page
+# (2026-10-17, section 3): open Monday to Thursday 10:00-22:00, Friday and
+# Saturday 10:00-24:00, closed on Sunday. One asset with two floor plans:
+# Seated, 12 seats in the sections Front (1-4) and Back (5-12), and
+# Standing, 40 places without names. Four containers back to back: rehearsal
+# hire Monday to Thursday 10:00-18:00, a seated concert on Friday 19:00-22:00,
+# hall hire on Saturday 10:00-18:00 and a club night on Saturday 20:00-24:00.
+# The page's quiz on Thursday 17:00-20:00 stacks on the rehearsal hire and
+# loads (2026-10-19, ). Two containers are refused, as loader tests: a
+# standing container on Friday 20:00-22:00 over the seated concert (two floor
+# plans of one asset at one time) and a brunch on Sunday 11:00-14:00 (the hall
+# is closed). Prices are made up.
+# The setup of Riverside Hall.
+# The format is described in docs/setup-file.md.
+
+format = 3
+
+[organization]
+name = "Riverside Hall"
+subdomain = "riverside-hall"
+time_zone = "Europe/Oslo"
+currency = "NOK"
+contact_email = "bookings@riverside-hall.example"
+standard_role = "Member"
+member_retention_months = 12
+booking_retention_months = 36
+
+[[assets]]
+number = 1
+name = "Riverside Hall"
+maximum_occupancy = 60
+
+[[assets.floor_plans]]
+name = "Seated"
+spot_word = "seat"
+spots = 12
+
+[[assets.floor_plans.groups]]
+name = "Front"
+word = "section"
+spots = [1, 2, 3, 4]
+
+[[assets.floor_plans.groups]]
+name = "Back"
+word = "section"
+spots = [5, 6, 7, 8, 9, 10, 11, 12]
+
+[[assets.floor_plans]]
+name = "Standing"
+spot_word = "place"
+spots = 40
+
+[[availability_calendars]]
+asset = "Riverside Hall"
+spans = [
+  { weekdays = ["mon", "tue", "wed", "thu"], start = "10:00", end = "22:00" },
+  { weekdays = ["fri", "sat"], start = "10:00", end = "24:00" },
+]
+
+[[booking_types]]
+name = "Rehearsal hire"
+
+[[booking_types]]
+name = "Concert"
+
+[[booking_types]]
+name = "Hall hire"
+
+[[booking_types]]
+name = "Club night"
+
+[[booking_categories]]
+name = "private"
+
+[[roles]]
+name = "Member"
+booking_categories = ["private"]
+admin_access = false
+
+[[booking_configurations]]
+number = 1
+asset = "Riverside Hall"
+booking_type = "Rehearsal hire"
+period_type = "flexible"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["mon", "tue", "wed", "thu"]
+interval = "1 h"
+minimum_length = "1 h"
+maximum_length = "8 h"
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 2
+asset = "Riverside Hall"
+booking_type = "Concert"
+period_type = "fixed"
+period_start = "19:00"
+period_end = "22:00"
+end_day = 0
+period_start_weekdays = ["fri"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+floor_plan = "Seated"
+
+[[booking_configurations]]
+number = 3
+asset = "Riverside Hall"
+booking_type = "Hall hire"
+period_type = "fixed"
+period_start = "10:00"
+period_end = "18:00"
+end_day = 0
+period_start_weekdays = ["sat"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "exclusive"
+
+[[booking_configurations]]
+number = 4
+asset = "Riverside Hall"
+booking_type = "Club night"
+period_type = "fixed"
+period_start = "20:00"
+period_end = "00:00"
+end_day = 1
+period_start_weekdays = ["sat"]
+status = "enabled"
+price_book = "Prices"
+booking_categories = ["private"]
+consumption_mode = "shared"
+floor_plan = "Standing"
+
+[[price_books]]
+number = 1
+name = "Prices"
+
+[[price_books.entries]]
+booking_configuration = 1
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "8 h", paid_per = "1 h", amount = 400 },
+]
+
+[[price_books.entries]]
+booking_configuration = 2
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "3 h", paid_per = "3 h", amount = 300 },
+]
+
+[[price_books.entries]]
+booking_configuration = 3
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_booking"
+tiers = [
+  { up_to = "8 h", paid_per = "8 h", amount = 5000 },
+]
+
+[[price_books.entries]]
+booking_configuration = 4
+booking_category = "private"
+tiers_go_by = "length"
+billing_basis = "per_capacity_unit"
+tiers = [
+  { up_to = "4 h", paid_per = "4 h", amount = 150 },
+]

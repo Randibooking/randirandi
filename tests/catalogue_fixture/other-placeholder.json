@@ -1,0 +1,6 @@
+{
+  "greeting": "Hei",
+  "welcome": "Velkommen, {navn}",
+  "box.one": "{count} eske",
+  "box.other": "{count} esker"
+}

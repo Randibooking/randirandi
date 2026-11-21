@@ -1,0 +1,100 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Environment setting names, with sensitive values supplied by the operator's
+# secret manager. bin/dev makes temporary sandbox values when they are absent.
+
+# --- Secrets ---------------------------------------------------------------
+# At least 50 random characters each.
+RANDIRANDI_SECRET_KEY=
+RANDIRANDI_DB_OWNER_PASSWORD=
+RANDIRANDI_DB_APP_PASSWORD=
+# Encrypts the administrators' authenticator secrets in the database: 32 random
+# bytes as 64 lower-case hex characters (openssl rand -hex 32). Required in a
+# deployed sandbox and in production; each has its own. Losing it means every
+# administrator enrols their authenticator again.
+RANDIRANDI_AUTHENTICATOR_KEY=
+# The shared password of the access gate, at least 24 random characters.
+# Closed: the gate comes before member login. Health, robots and the guarded
+# payment callback/return paths stay reachable. A deployed sandbox starts with
+# this password or RANDIRANDI_SANDBOX_OPEN=on, never neither and never both.
+# A laptop sandbox can leave both unset.
+# Production also requires an explicit state: closed for client handover,
+# open after the client is ready. Closed requires the password below.
+# Open ignores a retained password; member login and administrator MFA remain.
+# Keep the state in deployment configuration and the password in Infisical.
+# Sandbox uses RANDIRANDI_SANDBOX_OPEN instead; leave this state unset there.
+RANDIRANDI_ACCESS_GATE_STATE=
+RANDIRANDI_ACCESS_GATE_PASSWORD=
+# On: the sandbox is open to the login alone, everything but the reviewed
+# public paths behind it. Set it in deployment configuration after removing the
+# gate's password, then deploy. A sandbox only; production does not start
+# with it. Empty here.
+RANDIRANDI_SANDBOX_OPEN=
+# Separate Scaleway key: read-only database service, sandbox project only.
+# Configure this optional check only for the intended database/project;
+# supply the scoped credential through the secret manager.
+RANDIRANDI_BACKUP_CHECK_SCW_SECRET_KEY=
+
+# SMTP username and password/API key. Required when console email is off.
+# Keep these in the environment's Infisical project, never a plaintext file.
+RANDIRANDI_SMTP_USER=
+RANDIRANDI_SMTP_PASSWORD=
+# Sandbox-only permitted test recipient addresses, separated by commas.
+# With console email on, a message whose every recipient is listed is really
+# sent (SMTP settings above required); any other message is still printed.
+# Production does not start with it set. Empty here.
+RANDIRANDI_SANDBOX_MAIL_TO=
+
+# --- Set by the deployment --------------------------------------------------
+# sandbox or production.
+RANDIRANDI_ENVIRONMENT=
+# The hostnames the app answers to, separated by commas.
+RANDIRANDI_ALLOWED_HOSTS=
+# Organization addresses are <subdomain>.<domain>. For a local login page use
+# localhost and allow <subdomain>.localhost above.
+RANDIRANDI_ORGANIZATION_DOMAIN=
+# Who every email comes from: Name <address> or the address alone. Members
+# never write to it: every address they see is the organization's own.
+RANDIRANDI_SENDER=
+# Optional absolute HTTP(S) Help address. Empty keeps the existing documentation
+# destination; change it when your Help site is available. No credentials in URLs.
+RANDIRANDI_DOCUMENTATION_URL=
+# The address Caddy serves, and how it gets its certificate: "internal" on
+# the laptop, an email address for the certificate authority on a server.
+RANDIRANDI_SITE_ADDRESS=
+RANDIRANDI_TLS=
+# Where the stack listens. The laptop default is 127.0.0.1, ports 8080 and
+# 8443. A server sets 0.0.0.0, 80 and 443.
+RANDIRANDI_BIND=
+RANDIRANDI_HTTP_PORT=
+RANDIRANDI_HTTPS_PORT=
+
+# The machine identity that reads this environment's secrets from Infisical
+# when a process starts (randirandi/infisical.py). The first and the last are
+# not secrets. Supply the client secret through the operator's secret manager.
+# With none of the three, as on
+# the laptop, nothing is fetched and the secrets above come from the
+# environment.
+RANDIRANDI_INFISICAL_CLIENT_ID=
+RANDIRANDI_INFISICAL_CLIENT_SECRET=
+RANDIRANDI_INFISICAL_PROJECT=
+# Public database-instance identifier, handed only to the sandbox worker.
+RANDIRANDI_BACKUP_CHECK_INSTANCE_ID=
+
+# Client address: direct by default; the Scaleway deploy sets scaleway explicitly.
+# Scaleway requires a loopback peer and its overwritten external-address header.
+# Arbitrary X-Forwarded-For is never trusted.
+RANDIRANDI_CLIENT_ADDRESS_SOURCE=
+
+# SMTP defaults: smtp.tem.scaleway.com, starttls, port 587 (tls defaults to 465).
+# Both security choices verify the server certificate; no cleartext mode.
+RANDIRANDI_SMTP_HOST=
+RANDIRANDI_SMTP_PORT=
+RANDIRANDI_SMTP_SECURITY=
+
+# --- Test switches ----------------------------------------------------------
+# They follow from the environment and need not be set. Production refuses to
+# start with any of them on, or with debug on. See randirandi/environment.py.
+RANDIRANDI_DEBUG=
+RANDIRANDI_EMAIL_TO_CONSOLE=
+RANDIRANDI_PAYMENT_TEST_ENVIRONMENT=
+RANDIRANDI_MADE_UP_MEMBERS=

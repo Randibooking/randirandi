@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-only
+# Build the locally served MUI interface; --check refuses stale/missing output.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+repository="$PWD"
+if [ "${1:-}" = --if-current ] && uv run --locked --quiet python -m tools.assets current; then
+    exit 0
+fi
+
+# A normal-checkout check must not reinstall dependencies on the snapshotted disk.
+# Existing managed jobs already own a reservation; CI uses its temporary runner.
+if [ "$(uname -s)" = Darwin ] && [ -z "${SCRATCH_WORK_DIR:-}" ] && command -v scratch-run >/dev/null 2>&1; then
+    exec scratch-run run --project randirandi-styles --budget-gb 1 \
+        --result-gb 0.01 --results "$repository/.local/style-checks" \
+        --require outcome.json --cwd "$repository" -- \
+        env RANDIRANDI_STYLES_JOB=1 "$repository/bin/styles" "$@"
+fi
+
+if [ -n "${SCRATCH_WORK_DIR:-}" ]; then
+    build="$(mktemp -d "$SCRATCH_WORK_DIR/styles.XXXXXX")"
+else
+    build="$(mktemp -d)"
+fi
+finish() {
+    result=$?
+    trap - EXIT
+    rm -rf -- "$build"
+    if [ "${RANDIRANDI_STYLES_JOB:-}" = 1 ]; then
+        printf '{"exit_code": %d}\n' "$result" > "$SCRATCH_RESULTS_DIR/outcome.json"
+    fi
+    exit "$result"
+}
+trap finish EXIT
+export npm_config_cache="$build/npm-cache"
+export NPM_CONFIG_CACHE="$npm_config_cache"
+mkdir "$build/frontend"
+tar -C frontend --exclude='./node_modules' --exclude='./.vite' -cf - . \
+    | tar -C "$build/frontend" -xf -
+# The English label set the frontend imports (frontend/src/book/labels.js) lives with
+# the server, so it goes into the build tree beside frontend/.
+mkdir -p "$build/randirandi/locale" "$build/bin" "$build/tools"
+cp bin/styles "$build/bin/styles"
+cp tools/assets.py "$build/tools/assets.py"
+cp randirandi/locale/en.json "$build/randirandi/locale/en.json"
+npm ci --prefix "$build/frontend" --ignore-scripts --no-fund --no-audit --silent
+npm audit --prefix "$build/frontend" --audit-level=low
+(cd "$build/frontend" && node_modules/.bin/vite build --logLevel error)
+(cd "$build/frontend" && find src -name '*.test.js' -exec node --test {} +)
+if [ "${1:-}" = --check ]; then
+    diff -qr -x .build.json "$build/.local/styles/mui" "$repository/randirandi/core/static/core/ui"
+else
+    # This directory contains only this builder's generated assets.
+    rm -rf "$repository/randirandi/core/static/core/ui"
+    cp -R "$build/.local/styles/mui" "$repository/randirandi/core/static/core/ui"
+    uv run --locked --quiet python -m tools.assets stamp "$build"
+fi

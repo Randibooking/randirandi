@@ -1,0 +1,284 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-only
+# Every check, in one command. A change that does not pass is not committed
+# and not built.
+#   bin/check               run every check
+#   bin/check --commit      before a commit: scan only the staged files for
+#                           secrets, not the history the commit is not in yet
+#   bin/check --self-test   prove that the checks fail when they should
+# Needs uv and Docker. No secret is needed: what the checks use is made for
+# the run and thrown away.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+# shellcheck source=../images.env
+. ./images.env
+
+step() { printf '\n== %s\n' "$1"; }
+
+export RANDIRANDI_ENVIRONMENT=sandbox
+export RANDIRANDI_ALLOWED_HOSTS=localhost
+export RANDIRANDI_ORGANIZATION_DOMAIN=sandbox.example.org
+export RANDIRANDI_SENDER="RandiRandi <post@example.org>"
+RANDIRANDI_SECRET_KEY="$(openssl rand -hex 32)"
+export RANDIRANDI_SECRET_KEY
+RANDIRANDI_AUTHENTICATOR_KEY="$(openssl rand -hex 32)"
+export RANDIRANDI_AUTHENTICATOR_KEY
+export RANDIRANDI_DB_HOST=127.0.0.1
+export RANDIRANDI_DB_NAME=randirandi
+export RANDIRANDI_DB_USER=postgres
+RANDIRANDI_DB_PASSWORD="$(openssl rand -hex 32)"
+export RANDIRANDI_DB_PASSWORD
+
+run_gitleaks() {
+    # Source copies are disposable; keep them out of the VM's persistent disk.
+    docker run --rm -i --network none --read-only \
+        --tmpfs /scan:rw,nosuid,nodev,noexec,size=512m \
+        --tmpfs /tmp:rw,nosuid,nodev,noexec,size=64m \
+        --entrypoint "" "$GITLEAKS_IMAGE" "$@"
+}
+
+# Scans what is on its standard input, a tar of files, for secrets.
+scan_tar() {
+    run_gitleaks sh -ec '
+        mkdir -p /scan
+        tar -xf - -C /scan
+        gitleaks dir /scan --no-banner --redact --exit-code 1
+    '
+}
+
+# Every file Git tracks or would track, as a tar. What .gitignore leaves out
+# cannot be committed and is not scanned.
+tar_of_the_repository() {
+    git ls-files --cached --others --exclude-standard -z \
+        | while IFS= read -r -d '' file; do
+            if [ -e "$file" ]; then printf '%s\0' "$file"; fi
+        done \
+        | tar -cf - --null -T -
+}
+
+self_test() {
+    work="$(mktemp -d "${TMPDIR:-/tmp}/randirandi-self-test.XXXXXX")"
+    trap 'rm -rf "$work"' EXIT
+
+    step "A planted secret is caught"
+    mkdir "$work/clean" "$work/planted"
+    printf 'token = "none"\n' > "$work/clean/settings.py"
+    # Has the shape of a GitHub token and opens nothing. It is put together
+    # here so that this file holds nothing a scan would catch.
+    printf 'token = "ghp_%s"\n' "$(openssl rand -hex 18)" > "$work/planted/settings.py"
+    if ! tar -cf - -C "$work/clean" . | scan_tar >/dev/null 2>&1; then
+        echo "FAILED: the secret scan does not pass a file without a secret." >&2
+        exit 1
+    fi
+    if tar -cf - -C "$work/planted" . | scan_tar >/dev/null 2>&1; then
+        echo "FAILED: the secret scan let a planted secret through." >&2
+        exit 1
+    fi
+    echo "caught"
+
+    step "A dependency with a known hole is reported"
+    mkdir "$work/holed"
+    cat > "$work/holed/pyproject.toml" <<'TOML'
+[project]
+name = "holed"
+version = "0"
+requires-python = ">=3.12"
+dependencies = ["django==4.2.0"]
+TOML
+    (cd "$work/holed" && uv lock --quiet)
+    if report="$(cd "$work/holed" && uv audit 2>&1)"; then
+        echo "FAILED: the dependency check passed Django 4.2.0." >&2
+        exit 1
+    fi
+    if ! printf '%s' "$report" | grep -q -E 'PYSEC-|GHSA-|CVE-'; then
+        echo "FAILED: the dependency check failed without naming a hole:" >&2
+        printf '%s\n' "$report" >&2
+        exit 1
+    fi
+    echo "reported: $(printf '%s' "$report" | grep -c -E '^- (PYSEC|GHSA|CVE)-') known holes in Django 4.2.0"
+
+    step "Production does not start with a test switch on"
+    if report="$(RANDIRANDI_ENVIRONMENT=production RANDIRANDI_ACCESS_GATE_STATE=open RANDIRANDI_EMAIL_TO_CONSOLE=1 \
+        uv run --locked --quiet python manage.py check 2>&1)"; then
+        echo "FAILED: production started with a test switch on." >&2
+        exit 1
+    fi
+    if ! printf '%s' "$report" | grep -q 'Production does not start with a test switch'; then
+        echo "FAILED: production stopped for another reason:" >&2
+        printf '%s\n' "$report" >&2
+        exit 1
+    fi
+    echo "refused"
+
+    step "Production does not start with the sandbox mail list"
+    if report="$(RANDIRANDI_ENVIRONMENT=production RANDIRANDI_ACCESS_GATE_STATE=open RANDIRANDI_SANDBOX_MAIL_TO=owner@example.test \
+        uv run --locked --quiet python manage.py check 2>&1)"; then
+        echo "FAILED: production started with the sandbox mail list." >&2
+        exit 1
+    fi
+    if ! printf '%s' "$report" | grep -q 'RANDIRANDI_SANDBOX_MAIL_TO'; then
+        echo "FAILED: production stopped for another reason:" >&2
+        printf '%s\n' "$report" >&2
+        exit 1
+    fi
+    echo "refused"
+
+    printf '\nThe checks fail when they should.\n'
+}
+
+if [ "${1:-}" = "--self-test" ]; then
+    self_test
+    exit 0
+fi
+commit=""
+if [ "${1:-}" = "--commit" ]; then
+    commit=yes
+fi
+
+step "The lock file matches pyproject.toml"
+uv lock --check --quiet
+
+step "Source licences"
+uv run --locked --quiet python -m tools.source_licenses
+
+step "Format"
+uv run --locked --quiet ruff format --check .
+
+step "Lint and security lint"
+uv run --locked --quiet ruff check .
+
+step "MUI interface and its dependencies"
+bin/styles
+
+step "Licences are free and the browser notices are current"
+# a commit runs this only when a staged path can change a licence.
+if [ -n "$commit" ]; then
+    bin/licenses check --commit
+else
+    bin/licenses check
+fi
+
+# Platform guards change what mypy analyzes. Check both the laptop and CI
+# branches before either environment can commit or report a passing build.
+for type_platform in darwin linux; do
+    step "Types ($type_platform)"
+    uv run --locked --quiet mypy --platform "$type_platform"
+done
+
+step "No database files in Git"
+# member data goes into the managed database, not Git. A commit checks
+# what it stages; the full run, and GitHub, every tracked file.
+if [ -n "$commit" ]; then
+    uv run --locked --quiet python -m tools.database_files --staged
+else
+    uv run --locked --quiet python -m tools.database_files
+fi
+
+step "Every language catalogue is complete"
+# S1.4: exactly English's keys, the same placeholders, no empty text and both
+# forms of a counted key, in every randirandi/locale/*.json (under 1 second).
+uv run --locked --quiet python -m tools.catalogue_check
+
+step "Secrets in the files"
+if [ -n "$commit" ]; then
+    # What the commit adds, as staged; every other file passed when it was
+    # committed.
+    staged="$(mktemp -d "${TMPDIR:-/tmp}/randirandi-staged.XXXXXX")"
+    git diff --cached --name-only --no-renames --diff-filter=d -z \
+        | git checkout-index -z --stdin --prefix="$staged/"
+    tar -cf - -C "$staged" . | scan_tar
+    rm -rf "$staged"
+else
+    tar_of_the_repository | scan_tar
+fi
+
+if [ -z "$commit" ] && git rev-parse --verify --quiet HEAD >/dev/null; then
+    step "Secrets in the history"
+    git log --all --patch --no-color \
+        | run_gitleaks gitleaks stdin --no-banner --redact --exit-code 1
+fi
+
+step "Dependencies with known holes"
+uv audit --locked --quiet
+
+step "The Compose file"
+(
+    export RANDIRANDI_SITE_ADDRESS=localhost RANDIRANDI_TLS=internal
+    export RANDIRANDI_DB_OWNER_PASSWORD=check RANDIRANDI_DB_APP_PASSWORD=check
+    docker compose --env-file images.env config --quiet
+)
+
+step "Disposable database for schema checks and tests"
+# The tests get a Postgres of their own, kept in memory and gone afterwards.
+# Its write-ahead log is held to 128 MB: at Postgres's 1 GB it filled the
+# memory disk of a 2 GB Docker machine before the last tests (2026-10-19).
+database="$(docker run --rm --detach \
+    --env POSTGRES_PASSWORD="$RANDIRANDI_DB_PASSWORD" \
+    --env POSTGRES_DB="$RANDIRANDI_DB_NAME" \
+    --tmpfs /var/lib/postgresql/data \
+    --publish 127.0.0.1::5432 \
+    "$POSTGRES_IMAGE" -c max_wal_size=128MB)"
+trap 'docker rm --force "$database" >/dev/null' EXIT
+RANDIRANDI_DB_PORT="$(docker port "$database" 5432/tcp | head -n 1 | sed 's/.*://')"
+export RANDIRANDI_DB_PORT
+ready=""
+for _ in $(seq 1 60); do
+    # The image starts Postgres twice: once to set it up, then for real. Only
+    # the second one listens on the network.
+    if docker exec "$database" pg_isready --quiet --host 127.0.0.1; then
+        ready=yes
+        break
+    fi
+    sleep 0.5
+done
+if [ -z "$ready" ]; then
+    echo "The test database did not start." >&2
+    exit 1
+fi
+step "Django's deploy check, as production"
+RANDIRANDI_ENVIRONMENT=production RANDIRANDI_ACCESS_GATE_STATE=open \
+    RANDIRANDI_ALLOWED_HOSTS=example.org \
+    RANDIRANDI_ORGANIZATION_DOMAIN=example.org RANDIRANDI_SENDER=post@example.org \
+    RANDIRANDI_SMTP_USER=fictional-check-project \
+    RANDIRANDI_SMTP_PASSWORD=fictional-check-only \
+    uv run --locked --quiet python manage.py check --deploy --fail-level WARNING
+
+step "Tests"
+case "${PYTEST_ADDOPTS:-}" in
+*--collect-only*)
+    # The commit hook and GitHub's first part only collect the tests here;
+    # they run them in shares of their own.
+    export RANDIRANDI_TEST_DB_CONTAINER="$database"
+    pytest_cache=.pytest_cache
+    if [ -n "${SCRATCH_WORK_DIR:-}" ]; then
+        pytest_cache="$SCRATCH_WORK_DIR/check-cache/pytest"
+    fi
+    uv run --locked --quiet pytest -o "cache_dir=$pytest_cache"
+    ;;
+*)
+    # Every test, in eight shares side by side, each with a Postgres of its
+    # own, as the commit hook runs its tests (bin/test-shares). One after
+    # another on this one database they took 46 minutes (4888 tests,
+    # 2026-11-16), run three times for one change (owner: "i want this
+    # fixe,d ok ?"). The shares need the Docker machine's memory: this
+    # database goes first. bin/test-shares runs whole files and drops
+    # PYTEST_ADDOPTS, so options such as -k or -x do not narrow this run.
+    docker rm --force "$database" >/dev/null
+    trap - EXIT
+    logs="$(mktemp -d "${TMPDIR:-/tmp}/randirandi-check-tests.XXXXXX")"
+    outcome=0
+    printf '%s\n' tests/test_*.py \
+        | uv run --locked --quiet python -m tools.commit_tests --shares 8 \
+        | bin/test-shares "$logs" || outcome=$?
+    # What each file took splits the next run's shares by time, also after a
+    # failure.
+    uv run --locked --quiet python -m tools.commit_tests --record "$logs" \
+        || echo "The test times were not recorded; the next split counts tests." >&2
+    rm -rf "$logs"
+    if [ "$outcome" -ne 0 ]; then
+        exit 1
+    fi
+    ;;
+esac
+
+printf '\nEvery check passed.\n'

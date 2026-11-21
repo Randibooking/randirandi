@@ -1,0 +1,58 @@
+#!/bin/sh
+# SPDX-License-Identifier: AGPL-3.0-only
+# Before each commit: every check, then the tests that the staged changes can
+# reach, in eight shares side by side . The checks run first and alone: beside the shares they slowed them
+# by about 85 s (measured 2026-10-27, 505 s against 421 s), and a failed check
+# now stops the commit before any test runs. GitHub runs every test on each
+# push, and a delivery is done only when that run passes.
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+# Every run says how long it took, loudly when over its budget: a slow check
+# is a defect to fix before the next part . A part's commit has
+# 240 s. A commit that reaches more than half the test files is measured
+# against the suite's own floor on this Mac, 450 s : every
+# test runs on a real transaction, 0.75 s each, by the product's design.
+start="$(date +%s)"
+budget=240
+report() {
+    took=$(($(date +%s) - start))
+    if [ "$took" -gt "$budget" ]; then
+        echo "OVER BUDGET: the commit check took $took s; its budget is $budget s (ADR-0023). Make it faster before the next part." >&2
+    else
+        echo "The commit check took $took s (budget $budget s)."
+    fi
+}
+trap report EXIT
+# Each step on its own, so that a failure stops the commit instead of
+# picking no tests.
+changed="$(git diff --cached --name-only --no-renames)"
+shares="$(printf '%s\n' "$changed" \
+    | uv run --locked --quiet python -m tools.commit_tests --shares 8)"
+# bin/check only collects the tests: it passes these options to pytest, and
+# on its own it runs every test.
+PYTEST_ADDOPTS="--collect-only -qq"
+export PYTEST_ADDOPTS
+if [ -z "$shares" ]; then
+    echo "No test can reach these changes; the tests are collected, not run."
+    bin/check --commit
+    exit 0
+fi
+reached="$(printf '%s\n' "$shares" | wc -w | tr -d ' ')"
+every="$(ls tests/test_*.py | wc -l | tr -d ' ')"
+if [ "$((reached * 2))" -gt "$every" ]; then
+    budget=450
+fi
+echo "Tests these changes can reach: $reached of $every files."
+bin/check --commit
+logs="$(mktemp -d "${TMPDIR:-/tmp}/randirandi-commit.XXXXXX")"
+outcome=0
+printf '%s\n' "$shares" | bin/test-shares "$logs" > "$logs/shares.log" 2>&1 || outcome=$?
+printf '\n== Tests\n'
+cat "$logs/shares.log"
+# What each file took splits the next commit's shares by time.
+uv run --locked --quiet python -m tools.commit_tests --record "$logs" \
+    || echo "The test times were not recorded; the next split counts tests." >&2
+rm -rf "$logs"
+if [ "$outcome" -ne 0 ]; then
+    exit 1
+fi

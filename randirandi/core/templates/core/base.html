@@ -1,0 +1,38 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% load static %}
+<!doctype html>
+<html lang="{{ ui.lang|default:"en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="csp-nonce" content="{{ ui.nonce }}">
+    <title>{% block title %}RandiRandi{% endblock %}</title>
+    <link rel="icon" href="{% static 'core/brand/favicon.ico' %}" sizes="16x16 32x32 48x48">
+    <link rel="icon" type="image/png" href="{% static 'core/brand/favicon-32.png' %}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{% static 'core/brand/apple-touch-icon.png' %}">
+    {# Sent with the credentials: the sandbox's access gate covers it too. #}
+    <link rel="manifest" href="{% static 'core/manifest.webmanifest' %}" crossorigin="use-credentials">
+    <meta name="apple-mobile-web-app-title" content="RandiRandi">
+    <meta name="theme-color" content="#222221">
+    <link rel="stylesheet" href="{% static 'core/ui/main.css' %}">
+    <script type="module" src="{% static 'core/ui/app.js' %}"></script>
+  </head>
+  <body>
+    <main id="rr-root">
+      <div class="fallback-shell">
+        {% include "core/_beta_bar.html" %}
+        <div class="fallback-group">
+          {% block about %}{% include "core/_sign_in_about.html" %}{% endblock %}
+          <section class="fallback-card{% block card_class %}{% endblock %}">
+            <header class="fallback-brand">
+              <img src="{{ ui.logo }}" width="64" height="64" alt=""><span>RandiRandi</span>
+            </header>
+            {% block content %}{% endblock %}
+          </section>
+        </div>
+        {% block footer %}{% include "core/_sign_in_bar.html" %}{% endblock %}
+      </div>
+    </main>
+    {{ ui|json_script:"rr-config" }}
+  </body>
+</html>

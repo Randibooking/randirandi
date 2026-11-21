@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-only
+# Runs shares of tests side by side, each against a Postgres of its own: a
+# role installed by one test must not meet another's in the same cluster.
+#   bin/test-shares LOGS < shares    one share per line, its test files
+#                                    separated by spaces
+# Each share's output goes to LOGS/share-N.log; a failed share's log is
+# printed. The environment is the one bin/check gives its tests.
+set -euo pipefail
+logs="$1"
+cd "$(dirname "$0")/.."
+# shellcheck source=../images.env
+. ./images.env
+
+export RANDIRANDI_ENVIRONMENT=sandbox
+export RANDIRANDI_ALLOWED_HOSTS=localhost
+export RANDIRANDI_ORGANIZATION_DOMAIN=sandbox.example.org
+export RANDIRANDI_SENDER="RandiRandi <post@example.org>"
+RANDIRANDI_SECRET_KEY="$(openssl rand -hex 32)"
+export RANDIRANDI_SECRET_KEY
+RANDIRANDI_AUTHENTICATOR_KEY="$(openssl rand -hex 32)"
+export RANDIRANDI_AUTHENTICATOR_KEY
+export RANDIRANDI_DB_HOST=127.0.0.1
+export RANDIRANDI_DB_NAME=randirandi
+export RANDIRANDI_DB_USER=postgres
+RANDIRANDI_DB_PASSWORD="$(openssl rand -hex 32)"
+export RANDIRANDI_DB_PASSWORD
+unset PYTEST_ADDOPTS
+
+databases=()
+trap 'if [ "${#databases[@]}" -gt 0 ]; then docker rm --force "${databases[@]}" >/dev/null; fi' EXIT
+
+run_share() {
+    local database="$1" files="$2" report="$3"
+    for _ in $(seq 1 60); do
+        if docker exec "$database" pg_isready --quiet --host 127.0.0.1; then
+            break
+        fi
+        sleep 0.5
+    done
+    RANDIRANDI_DB_PORT="$(docker port "$database" 5432/tcp | head -n 1 | sed 's/.*://')"
+    export RANDIRANDI_DB_PORT RANDIRANDI_TEST_DB_CONTAINER="$database"
+    # The report says what each test took, for the next split
+    # (`tools.commit_tests --record`).
+    # shellcheck disable=SC2086
+    uv run --locked --quiet pytest -q -p no:cacheprovider --junitxml="$report" $files
+}
+
+number=0
+running=()
+while IFS= read -r files; do
+    [ -n "$files" ] || continue
+    # Eight of these, and bin/check's own, share the Docker machine (4 CPUs,
+    # 4 GB since 2026-10-21; 2 GB before) without swap, their data and shared memory in its memory. With Postgres's
+    # defaults a commit that reaches most tests ran it out of memory and the
+    # kernel killed a share's server (2026-10-21, twice). So each keeps a small
+    # buffer and write-ahead log, and writes no page twice and syncs nothing:
+    # the data is gone after the run anyway.
+    database="$(docker run --rm --detach \
+        --env POSTGRES_PASSWORD="$RANDIRANDI_DB_PASSWORD" \
+        --env POSTGRES_DB="$RANDIRANDI_DB_NAME" \
+        --tmpfs /var/lib/postgresql/data \
+        --publish 127.0.0.1::5432 \
+        "$POSTGRES_IMAGE" -c shared_buffers=32MB -c max_wal_size=64MB \
+        -c min_wal_size=32MB -c full_page_writes=off -c fsync=off \
+        -c synchronous_commit=off)"
+    databases+=("$database")
+    number=$((number + 1))
+    run_share "$database" "$files" "$logs/share-$number.xml" \
+        > "$logs/share-$number.log" 2>&1 &
+    running+=("$!")
+done
+
+failed=0
+for index in "${!running[@]}"; do
+    log="$logs/share-$((index + 1)).log"
+    if wait "${running[$index]}"; then
+        printf 'Share %s: %s\n' "$((index + 1))" "$(tail -n 1 "$log")"
+    else
+        failed=1
+        printf '\nShare %s failed:\n' "$((index + 1))"
+        cat "$log"
+    fi
+done
+exit "$failed"

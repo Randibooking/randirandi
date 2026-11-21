@@ -1,0 +1,8 @@
+{# SPDX-License-Identifier: AGPL-3.0-only #}
+{% extends "core/base.html" %}
+{% block title %}{{ ui.title }} · RandiRandi{% endblock %}
+{% block content %}
+  <h1>{{ ui.title }}</h1>
+  <p>{{ ui.message }}</p>
+  <a class="fallback-action" href="{{ ui.action }}">{{ ui.back }}</a>
+{% endblock %}

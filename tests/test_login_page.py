@@ -578,7 +578,5 @@ def test_the_sign_in_and_code_pages_carry_the_about_and_the_bar_without_script()
         assert bar.index('href="/conditions/"') < bar.index(link)
         assert bar.count("<a ") == 3
         assert "GitHub</a>" not in bar
-    assert (
-        DOCUMENTATION_URL == "https://github.com/Randibooking/public/blob/main/FAQ.md"
-    )
+    assert DOCUMENTATION_URL == "https://help.randirandi.com/"
     assert "third-party-notices" not in login.content.decode()

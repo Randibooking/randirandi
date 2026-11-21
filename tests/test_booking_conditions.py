@@ -306,7 +306,7 @@ def test_every_footer_links_the_two_pages_beside_documentation(
         links = [
             page.index('href="/prices/"'),
             page.index('href="/conditions/"'),
-            page.index("https://github.com/Randibooking/public"),
+            page.index("https://help.randirandi.com/"),
         ]
         assert links == sorted(links), path
         assert config_of(get(Client(), path))["footer_links"] is True

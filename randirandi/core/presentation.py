@@ -16,7 +16,8 @@ from randirandi.core.organization_request import organization_for_request
 from randirandi.environment import DEFAULT_DOCUMENTATION_URL
 from randirandi.version import current
 
-# Existing documentation target; migrate when the shared Help endpoint is live.
+# The shared Help site (live since 21 November 2026); an operator may choose
+# another destination with RANDIRANDI_DOCUMENTATION_URL.
 DOCUMENTATION_URL = DEFAULT_DOCUMENTATION_URL
 
 

@@ -1,16 +1,49 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 """TLS-only SMTP settings; credentials stay in the process's Infisical mapping."""
 
+import contextlib
 import re
 from collections.abc import Collection, Mapping, Sequence
+from email.utils import make_msgid, parseaddr
 from typing import Any
 
 from django.core import mail
 from django.core.exceptions import ImproperlyConfigured
 from django.core.mail import EmailMessage
+from django.core.mail.backends import smtp
 from django.core.mail.backends.base import BaseEmailBackend
+from django.utils.encoding import punycode
 
 CONSOLE = {"BACKEND": "django.core.mail.backends.console.EmailBackend"}
+
+
+class SmtpBackend(smtp.EmailBackend):
+    """Django's SMTP backend, with each message's Message-ID on the domain of
+    its own From address.
+
+    Django names the Message-ID after the machine (`socket.getfqdn()`); in a
+    container that is a bare host name with no domain. On 21 November 2026
+    every login code to Hotmail and Outlook.com went to junk with SPF, DKIM
+    and DMARC passing, and this header was the one difference left in the
+    message itself. A Message-ID the message already has is kept, and so is
+    Django's when the From address has no usable domain. The id is set on
+    the message itself, so sending the same message again keeps it.
+    """
+
+    def send_messages(self, email_messages: Sequence[EmailMessage]) -> int:
+        for message in email_messages:
+            headers = message.extra_headers
+            if any(name.lower() == "message-id" for name in headers):
+                continue
+            # The From header Django writes: an explicit one wins, as there.
+            sender = str(headers.get("From", message.from_email))
+            _local, at, domain = parseaddr(sender)[1].rpartition("@")
+            if not at or not domain:
+                continue
+            # A domain IDNA refuses is not usable: Django's own Message-ID stays.
+            with contextlib.suppress(UnicodeError):
+                headers["Message-ID"] = make_msgid(domain=punycode(domain))
+        return super().send_messages(email_messages)
 
 
 class SandboxRouter(BaseEmailBackend):
@@ -140,7 +173,7 @@ def _smtp(environ: Mapping[str, str]) -> dict[str, Any]:
             raise ImproperlyConfigured(f"{name} is required when email is really sent.")
         credentials[option] = credential
     return {
-        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+        "BACKEND": f"{__name__}.SmtpBackend",
         "OPTIONS": {
             "host": host,
             "port": int(value),

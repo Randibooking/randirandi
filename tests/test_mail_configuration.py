@@ -1,13 +1,17 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 """SMTP settings and the actual framework TLS/authentication call sequence."""
 
+import email
+import email.message
 import io
+import re
 import ssl
 from unittest import mock
 
 import pytest
 from django.core import mail
 from django.core.exceptions import ImproperlyConfigured
+from django.core.mail.utils import DNS_NAME
 from django.test import override_settings
 
 from randirandi.mail_configuration import CONSOLE, mailers
@@ -277,3 +281,109 @@ def test_a_mixed_batch_is_sorted_message_by_message() -> None:
     assert sent == 3
     assert by_smtp == [OWNER, "second@example.test"]
     assert printed == ["member@example.test"]
+
+
+def sent_through_smtp(*messages: mail.EmailMessage) -> list[email.message.Message]:
+    """Send through the deployment's SMTP configuration with the network
+    mocked, and parse the bytes each message would put on the wire."""
+    with (
+        override_settings(MAILERS=mailers(CREDENTIALS, console=False)),
+        mock.patch("smtplib.SMTP") as smtp,
+    ):
+        connection = smtp.return_value
+        connection.sendmail.return_value = {}
+        with mail.mailers["default"] as backend:
+            assert backend.send_messages(list(messages)) == len(messages)
+        return [
+            email.message_from_bytes(call.args[2])
+            for call in connection.sendmail.call_args_list
+        ]
+
+
+def test_message_id_names_the_senders_domain_not_the_machine() -> None:
+    message = mail.EmailMessage(
+        "Kode",
+        "Your fictional code",
+        "A/L Fiktiv Borettslag via RandiRandi <noreply@sender.example>",
+        ["member@example.test"],
+    )
+    (sent,) = sent_through_smtp(message)
+    message_id = sent["Message-ID"]
+    assert sent.get_all("Message-ID") == [message_id]
+    assert re.fullmatch(r"<[^@<>\s]+@sender\.example>", message_id)
+    assert str(DNS_NAME) not in message_id
+    # The same message sent again keeps its id; another message gets its own.
+    other = mail.EmailMessage("Kode", "x", "noreply@sender.example", ["b@example.test"])
+    again, second = sent_through_smtp(message, other)
+    assert again["Message-ID"] == message_id
+    assert second["Message-ID"] != message_id
+    assert second["Message-ID"].endswith("@sender.example>")
+
+
+@pytest.mark.parametrize("sender", ["noreply", "noreply@a..b"])
+def test_a_sender_without_a_usable_domain_keeps_djangos_id(sender: str) -> None:
+    message = mail.EmailMessage("Code", "x", "post@example.test", ["m@example.test"])
+    message.extra_headers["From"] = sender
+    (sent,) = sent_through_smtp(message)
+    assert sent["Message-ID"].endswith(f"@{DNS_NAME}>")
+
+
+def test_an_explicit_from_header_names_the_domain() -> None:
+    message = mail.EmailMessage(
+        "Code",
+        "x",
+        "post@envelope.example",
+        ["m@example.test"],
+        headers={"From": "Fiktiv <noreply@written.example>"},
+    )
+    (sent,) = sent_through_smtp(message)
+    assert sent["Message-ID"].endswith("@written.example>")
+
+
+@pytest.mark.parametrize("name", ["Message-ID", "message-id"])
+def test_a_message_id_the_message_has_is_kept(name: str) -> None:
+    message = mail.EmailMessage(
+        "Code",
+        "x",
+        "noreply@sender.example",
+        ["member@example.test"],
+        headers={name: "<given.1@other.example>"},
+    )
+    (sent,) = sent_through_smtp(message)
+    assert sent.get_all("Message-ID") == ["<given.1@other.example>"]
+
+
+def test_the_sandbox_router_sends_through_the_same_backend() -> None:
+    configuration = mailers(CREDENTIALS, console=True, sandbox_to=[OWNER])
+    assert (
+        configuration["smtp"]["BACKEND"] == "randirandi.mail_configuration.SmtpBackend"
+    )
+    assert mailers(CREDENTIALS, console=False)["default"]["BACKEND"] == (
+        "randirandi.mail_configuration.SmtpBackend"
+    )
+
+
+@pytest.mark.django_db(transaction=True)
+def test_a_login_code_carries_the_deployments_domain() -> None:
+    from django.conf import settings
+
+    from randirandi.core.login_delivery import enqueue_code, send_pending_codes
+    from tests import made_up
+
+    made = made_up.everything()
+    enqueue_code(
+        organization=made.organization,
+        identifier=made.member.email,
+        browser="fictional-browser-binding-for-message-id",
+        network="192.0.2.13",
+    )
+    with (
+        override_settings(MAILERS=mailers(CREDENTIALS, console=False)),
+        mock.patch("smtplib.SMTP") as smtp,
+    ):
+        smtp.return_value.sendmail.return_value = {}
+        send_pending_codes()
+    (call,) = smtp.return_value.sendmail.call_args_list
+    sent = email.message_from_bytes(call.args[2])
+    domain = settings.SENDER.address.rpartition("@")[2]
+    assert sent["Message-ID"].endswith(f"@{domain}>")
